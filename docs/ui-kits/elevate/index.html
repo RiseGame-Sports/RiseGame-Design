@@ -1,0 +1,89 @@
+<!-- @dsCard group="Elevate (redesign)" viewport="900x820" name="Elevate: fresh design" subtitle="Same IA as the current app, re-cut in RiseGame black + neon" -->
+<!DOCTYPE html><html><head><meta charset="utf-8"><title>RiseGame Elevate: fresh design</title><link rel="stylesheet" href="../../../dist/styles/index.css">
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../ds-bundle.js"></script>
+<style>body{margin:0;background:var(--surface-chrome);display:flex;align-items:center;justify-content:center;min-height:100vh;padding:24px}</style></head>
+<body><div id="root"></div>
+<script src="data.js"></script>
+<script type="text/babel" src="ios-frame.jsx"></script>
+<script type="text/babel" src="shell.jsx"></script>
+<script type="text/babel" src="ParentHome.jsx"></script>
+<script type="text/babel" src="AthleteScreens.jsx"></script>
+<script type="text/babel" src="CoachScreens.jsx"></script>
+<script type="text/babel" src="FamilyScreens.jsx"></script>
+<script type="text/babel">
+const { AppTabBar } = window.RiseGameDesignSystem_66bdc7;
+function App(){
+  const [dark,setDark]=React.useState(true);
+  const [role,setRole]=React.useState('Parent');
+  const [tab,setTab]=React.useState('dashboard');
+  const [athlete,setAthlete]=React.useState(null);
+  const [aTab,setATab]=React.useState('metrics');
+  const [card,setCard]=React.useState(null);
+  const [workout,setWorkout]=React.useState(false);
+  const [build,setBuild]=React.useState(false);
+  const [sheet,setSheet]=React.useState(false);
+  const reset=()=>{setAthlete(null);setCard(null);setWorkout(false);setBuild(false);setSheet(false);};
+  const first=window.ELEVATE.athletes[0];
+
+  let screen;
+  if(role==='Coach'){
+    if(build) screen=<WorkoutBuilder onBack={()=>setBuild(false)} onNext={()=>{setBuild(false);setWorkout(true);}} />;
+    else if(tab==='account') screen=<AccountScreen role={role} onRole={r=>{setRole(r);reset();setTab(r==='Coach'?'teams':'dashboard');}} />;
+    else if(workout||tab==='workouts') screen=<WorkoutDetail onBack={()=>{setWorkout(false);setTab('teams');}} />;
+    else screen=<CoachTeams role={role} onRole={r=>{setRole(r);reset();setTab('dashboard');}} onBuild={()=>setBuild(true)} />;
+  } else if(card){
+    screen=<CaptureCardScreen card={card} onBack={()=>setCard(null)} />;
+  } else if(workout){
+    screen=<WorkoutDetail onBack={()=>setWorkout(false)} />;
+  } else if(athlete){
+    screen=<AthleteDetail athlete={athlete} tab={aTab} onTab={setATab} onBack={()=>setAthlete(null)} onOpenCard={setCard} onOpenWorkout={()=>setWorkout(true)} onNew={()=>setSheet(true)} />;
+  } else if(tab==='workouts'){
+    screen=<WorkoutDetail onBack={()=>setTab('dashboard')} />;
+  } else if(tab==='reports'){
+    screen=<ReportsScreen role={role} onRole={r=>{setRole(r);reset();setTab(r==='Coach'?'teams':'dashboard');}} />;
+  } else if(tab==='account'){
+    screen=<AccountScreen role={role} onRole={r=>{setRole(r);reset();setTab(r==='Coach'?'teams':'dashboard');}} />;
+  } else {
+    screen=<ParentHome role={role} onRole={r=>{setRole(r);reset();setTab(r==='Coach'?'teams':'dashboard');}} onOpen={a=>{setAthlete(a);setATab('metrics');}} />;
+  }
+
+  // Bottom bar is family-level. Anything scoped to one athlete lives on that
+  // athlete's top tabs (Assignments / Metrics / Profile): no label in both.
+  const parentTabs=[{value:'dashboard',label:'Dashboard',icon:'layout-grid'},{value:'workouts',label:'Workouts',icon:'dumbbell'},{value:'reports',label:'Reports',icon:'file-text'},{value:'account',label:'Account',icon:'user-round'}];
+  const coachTabs=[{value:'teams',label:'Teams',icon:'users'},{value:'workouts',label:'Workouts',icon:'dumbbell'},{value:'account',label:'Account',icon:'user-round'}];
+
+  const tabBarVars=dark?null:{'--rg-black':'#ffffff','--border-dark':'#e2e2e2','--rg-dark-mute':'#666666','--rg-accent':'#161616'};
+
+  return (
+    <div style={{display:'flex',flexDirection:'column',alignItems:'center',gap:16}}>
+      <div style={{display:'flex',alignItems:'center',gap:10}}>
+        <span style={{fontFamily:'var(--font-body)',fontSize:10,fontWeight:700,letterSpacing:'.14em',textTransform:'uppercase',color:'var(--text-muted)'}}>Chrome</span>
+        <div style={{display:'flex',padding:2,background:'var(--rg-white)',border:'1px solid var(--border-default)',borderRadius:'var(--radius-md)'}}>
+          {[['Dark',true],['Light',false]].map(([l,v])=>(
+            <button key={l} onClick={()=>setDark(v)} style={{minWidth:70,height:28,border:0,borderRadius:2,cursor:'pointer',
+              background:dark===v?'var(--rg-ink)':'transparent',color:dark===v?'var(--rg-white)':'var(--text-muted)',
+              fontFamily:'var(--font-body)',fontSize:11,fontWeight:700,letterSpacing:'.1em',textTransform:'uppercase'}}>{l}</button>
+          ))}
+        </div>
+      </div>
+      <IOSDevice dark={dark}>
+        <Themed dark={dark}>
+          <div style={{position:'relative',display:'flex',flexDirection:'column',height:'100%',background:'var(--e-bg)'}}>
+            <div style={{flex:1,minHeight:0}}>{screen}</div>
+            <div style={tabBarVars||undefined}>
+              <AppTabBar value={role==='Coach'?(tab==='dashboard'?'teams':tab):tab}
+                onChange={v=>{setTab(v);setAthlete(null);setCard(null);setWorkout(false);setBuild(false);}}
+                items={role==='Coach'?coachTabs:parentTabs} />
+            </div>
+            {sheet?<NewCardSheet onClose={()=>setSheet(false)} />:null}
+          </div>
+        </Themed>
+      </IOSDevice>
+    </div>
+  );
+}
+ReactDOM.createRoot(document.getElementById('root')).render(<App/>);
+</script></body></html>

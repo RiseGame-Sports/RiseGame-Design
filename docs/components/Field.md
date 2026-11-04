@@ -7,4 +7,4 @@ Label + control + hint/error wrapper. Every form control in RiseGame UI sits in 
     </Field>
 
 Notes
-- Errors render in ink with an explanatory sentence — no red, no urgency styling.
+- Errors render in ink with an explanatory sentence: no red, no urgency styling.

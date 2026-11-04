@@ -21,7 +21,6 @@
     },
     "./tokens.json": "./tokens/tokens.json",
     "./assets/*": "./assets/*",
-    "./umd": "./umd/risegame-design.umd.js",
     "./package.json": "./package.json"
   },
   "sideEffects": [
@@ -31,12 +30,13 @@
     "dist",
     "assets",
     "tokens",
-    "umd",
-    "docs",
+    "docs/brand-book.md",
+    "docs/components",
     "README.md"
   ],
   "scripts": {
     "build": "node scripts/build.mjs",
+    "test": "node --test test/",
     "prepublishOnly": "npm run build"
   },
   "peerDependencies": {
@@ -45,6 +45,14 @@
   },
   "devDependencies": {
     "@babel/core": "7.26.0",
-    "@babel/preset-react": "7.26.3"
+    "@babel/preset-react": "7.26.3",
+    "@fontsource/barlow-condensed": "5.3.0",
+    "@fontsource/roboto": "5.3.0",
+    "esbuild": "0.28.2",
+    "react": "19.3.1",
+    "react-dom": "19.3.1"
+  },
+  "dependencies": {
+    "lucide-react": "1.68.0"
   }
 }

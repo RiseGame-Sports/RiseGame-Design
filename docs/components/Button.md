@@ -1,6 +1,6 @@
 # Button
 
-The one CTA control — one job per button, accent reserved for the single most important action on a view.
+The one CTA control: one job per button, accent reserved for the single most important action on a view.
 
     <Button variant="primary" size="lg" iconRight="chevron-right">Request a Demo</Button>
     <Button variant="secondary">See Tutorials</Button>

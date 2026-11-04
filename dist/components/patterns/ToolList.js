@@ -3,7 +3,7 @@ import React from 'react';
 import { Icon } from '../core/Icon.js';
 import { Button } from '../core/Button.js';
 
-// One row: icon tile, title, muted meta line, then either a labelled secondary
+// One row: icon tile, title, muted meta line, then either a labeled secondary
 // button (actionLabel) or, with no button, the whole row as the tap target.
 export function ToolRow({
   icon,

@@ -1,6 +1,6 @@
 # Dialog
 
-Centred modal over a 60% black scrim — confirm a slot booking, close signups, publish reports.
+Centered modal over a 60% black scrim, used to confirm a slot booking, close signups, publish reports.
 
     <Dialog title="Close signups?" onClose={fn}
       footer={<><Button variant="ghost">Cancel</Button><Button>Close signups</Button></>}>
@@ -8,5 +8,5 @@ Centred modal over a 60% black scrim — confirm a slot booking, close signups, 
     </Dialog>
 
 Notes
-- The scrim is positioned absolute — give the containing screen position:relative.
+- The scrim is positioned absolute: give the containing screen position:relative.
 - 8px radius, one overlay shadow. Destructive actions still use the normal palette, never red.

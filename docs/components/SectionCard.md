@@ -1,6 +1,6 @@
 # SectionCard
 
-A labelled section of a product screen: a muted uppercase eyebrow above one plain card.
+A labeled section of a product screen: a muted uppercase eyebrow above one plain card.
 
     <SectionCard label="Jump back in" onDark padding="12px 16px">…</SectionCard>
     <SectionCard label="Tools" onDark><ToolList>…</ToolList></SectionCard>

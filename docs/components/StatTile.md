@@ -1,6 +1,6 @@
 # StatTile
 
-Condensed number over an uppercase caption — dashboard counts, not marketing traction claims.
+Condensed number over an uppercase caption, for dashboard counts, not marketing traction claims.
 
     <StatTile value="42" label="Players registered" />
 

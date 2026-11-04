@@ -1,25 +1,22 @@
 import React from 'react';
+import { ICONS } from './icons.js';
 
-// Lucide (via lucide-static on unpkg) is the substituted icon set — the RiseGame
-// brand pack ships no icon library. Glyphs are masked so they inherit currentColor.
-const BASE = 'https://unpkg.com/lucide-static@0.544.0/icons/';
-
+// Lucide outline glyph in a fixed box that inherits currentColor. The glyphs are
+// bundled (see icons.js); an unknown name renders the empty box at the same size.
 export function Icon({ name, size = 20, style, title, ...rest }) {
-  const url = 'url("' + BASE + name + '.svg")';
+  const Glyph = Object.hasOwn(ICONS, name) ? ICONS[name] : null;
+  const a11y = title ? { role: 'img', 'aria-label': title } : { 'aria-hidden': 'true' };
   return (
     <span
-      role={title ? 'img' : 'presentation'}
-      aria-label={title}
+      {...a11y}
       style={{
-        display: 'inline-block', flex: '0 0 auto', width: size, height: size,
-        backgroundColor: 'currentColor',
-        WebkitMaskImage: url, maskImage: url,
-        WebkitMaskRepeat: 'no-repeat', maskRepeat: 'no-repeat',
-        WebkitMaskSize: 'contain', maskSize: 'contain',
-        WebkitMaskPosition: 'center', maskPosition: 'center',
+        display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
+        flex: '0 0 auto', width: size, height: size,
         ...style,
       }}
       {...rest}
-    />
+    >
+      {Glyph ? <Glyph size={size} color="currentColor" aria-hidden="true" focusable="false" /> : null}
+    </span>
   );
 }

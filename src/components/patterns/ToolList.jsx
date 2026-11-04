@@ -2,7 +2,7 @@ import React from 'react';
 import { Icon } from '../core/Icon.jsx';
 import { Button } from '../core/Button.jsx';
 
-// One row: icon tile, title, muted meta line, then either a labelled secondary
+// One row: icon tile, title, muted meta line, then either a labeled secondary
 // button (actionLabel) or, with no button, the whole row as the tap target.
 export function ToolRow({ icon, title, meta, actionLabel, onAction, onClick, href, onDark = false, divider = false, style, ...rest }) {
   const [hover, setHover] = React.useState(false);
