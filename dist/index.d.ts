@@ -44,7 +44,7 @@ export interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
 export declare function Card(props: CardProps): JSX.Element;
 
 export interface IconProps extends React.HTMLAttributes<HTMLSpanElement> {
-  /** Lucide icon slug, e.g. "calendar-days", "clipboard-list", "rocket". */
+  /** Lucide icon slug, e.g. "calendar-days", "clipboard-list", "rocket". Unknown slugs render an empty box. */
   name: string;
   /** Pixel box for the glyph. Default 20. */
   size?: number;
@@ -53,6 +53,21 @@ export interface IconProps extends React.HTMLAttributes<HTMLSpanElement> {
 }
 
 export declare function Icon(props: IconProps): JSX.Element;
+
+/** Props the Icon component passes to a registered glyph. */
+export interface IconGlyphProps {
+  size?: number;
+  color?: string;
+  'aria-hidden'?: boolean | 'true' | 'false';
+  focusable?: boolean | 'true' | 'false';
+}
+
+/**
+ * Adds or replaces icons by slug, for glyphs an app needs that the system does
+ * not ship. Pass lucide-react components or any component that renders an SVG.
+ * Call it once at startup, before the first render that uses them.
+ */
+export declare function registerIcons(map: Record<string, React.ComponentType<IconGlyphProps>>): void;
 
 export interface IconButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   /** Lucide slug. */

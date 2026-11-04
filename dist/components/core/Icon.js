@@ -1,9 +1,9 @@
 function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
 import React from 'react';
+import { ICONS } from './icons.js';
 
-// Lucide (via lucide-static on unpkg) is the substituted icon set; the RiseGame
-// brand pack ships no icon library. Glyphs are masked so they inherit currentColor.
-const BASE = 'https://unpkg.com/lucide-static@0.544.0/icons/';
+// Lucide outline glyph in a fixed box that inherits currentColor. The glyphs are
+// bundled (see icons.js); an unknown name renders the empty box at the same size.
 export function Icon({
   name,
   size = 20,
@@ -11,25 +11,27 @@ export function Icon({
   title,
   ...rest
 }) {
-  const url = 'url("' + BASE + name + '.svg")';
-  return /*#__PURE__*/React.createElement("span", _extends({
-    role: title ? 'img' : 'presentation',
-    "aria-label": title,
+  const Glyph = ICONS[name];
+  const a11y = title ? {
+    role: 'img',
+    'aria-label': title
+  } : {
+    'aria-hidden': 'true'
+  };
+  return /*#__PURE__*/React.createElement("span", _extends({}, a11y, {
     style: {
-      display: 'inline-block',
+      display: 'inline-flex',
+      alignItems: 'center',
+      justifyContent: 'center',
       flex: '0 0 auto',
       width: size,
       height: size,
-      backgroundColor: 'currentColor',
-      WebkitMaskImage: url,
-      maskImage: url,
-      WebkitMaskRepeat: 'no-repeat',
-      maskRepeat: 'no-repeat',
-      WebkitMaskSize: 'contain',
-      maskSize: 'contain',
-      WebkitMaskPosition: 'center',
-      maskPosition: 'center',
       ...style
     }
-  }, rest));
+  }, rest), Glyph ? /*#__PURE__*/React.createElement(Glyph, {
+    size: size,
+    color: "currentColor",
+    "aria-hidden": "true",
+    focusable: "false"
+  }) : null);
 }

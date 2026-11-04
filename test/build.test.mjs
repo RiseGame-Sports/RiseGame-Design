@@ -6,6 +6,9 @@ import { fileURLToPath } from 'node:url';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 
+// Exports that are not components, so the README component list leaves them out.
+const NON_COMPONENT_EXPORTS = ['registerIcons'];
+
 function walk(dir, filter, out = []) {
   for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
     const full = path.join(dir, entry.name);
@@ -46,10 +49,10 @@ test('index exports every component', () => {
   for (const m of indexJs.matchAll(/^export\s*\{([^}]*)\}/gm)) {
     for (const name of m[1].split(',')) if (name.trim()) exported.push(name.trim());
   }
-  assert.deepEqual([...exported].sort(), expected);
+  assert.deepEqual([...exported].sort(), [...expected, ...NON_COMPONENT_EXPORTS].sort());
 
   const dts = fs.readFileSync(path.join(root, 'dist/index.d.ts'), 'utf8');
-  for (const name of expected) {
+  for (const name of [...expected, ...NON_COMPONENT_EXPORTS]) {
     const re = new RegExp(`export declare (function|const) ${name}\\b`);
     assert.match(dts, re, `${name} has no declare in dist/index.d.ts`);
   }

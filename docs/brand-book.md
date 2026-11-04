@@ -192,11 +192,12 @@ piece of proprietary iconography is the rocket / **R** mark itself, which is use
 favicon, avatar and small-chrome glyph (`assets/logos/rocket-*.png`, `assets/logos/risegame-r-*.png`). The
 live site does the same thing: testimonials use the R mark where an avatar would go.
 
-**Substitution (flagged):** UI icons use **Lucide**, loaded from CDN via `lucide-static` and
-masked so glyphs inherit `currentColor` (see `src/components/core/Icon.jsx`). Lucide was chosen for
+**Substitution (flagged):** UI icons use **Lucide**, bundled through `lucide-react` and drawn
+in `currentColor` (see `src/components/core/icons.js`). Lucide was chosen for
 its thin, geometric, uniform-stroke outlines, which sit closest to the flat / minimal / tech
 direction in the brief. **This is a substitution, not a brand decision**. If RiseGame has a real
-icon set, replace `Icon.jsx`'s base URL (and run `npm run build`) and the whole system follows.
+icon set, replace the components in `icons.js` (and run `npm run build`) and the whole system follows.
+Apps add glyphs the package does not ship with `registerIcons`.
 
 Rules:
 
@@ -214,13 +215,12 @@ Rules:
 
 ---
 
-## Font substitution: needs your input
+## Font files
 
-No licensed font binaries came with the pack, so `src/styles/base.css` loads **Barlow Condensed** and
-**Roboto** from Google Fonts, the same families the live site uses, so this is a hosting
-substitution rather than a typeface substitution. If you can supply hosted files, drop them in
-`fonts/`, list them in `tokens/tokens.json` `type.fonts`, and remove the `@import` at the top of `src/styles/base.css`. This is one of the open gaps
-already listed in `docs/sources/design.md`.
+No licensed font binaries came with the pack. The package bundles **Barlow Condensed** and
+**Roboto**, the same families the live site uses, from Fontsource (SIL Open Font License, latin
+subset). `npm run build` copies them into `dist/fonts/` and writes `dist/styles/fonts.css`. To use
+licensed files instead, change the `FONTS` list in `scripts/build.mjs`.
 
 ---
 

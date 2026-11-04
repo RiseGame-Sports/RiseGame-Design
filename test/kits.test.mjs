@@ -6,6 +6,7 @@ import vm from 'node:vm';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
+const NON_COMPONENT_EXPORTS = ['registerIcons'];
 
 function walk(dir, filter, out = []) {
   for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
@@ -22,7 +23,7 @@ function exportNames() {
   for (const m of indexJs.matchAll(/^export\s*\{([^}]*)\}/gm)) {
     for (const name of m[1].split(',')) if (name.trim()) names.push(name.trim());
   }
-  return names;
+  return names.filter((n) => !NON_COMPONENT_EXPORTS.includes(n));
 }
 
 test('every local src/href in docs/ui-kits and docs/guidelines resolves', () => {
@@ -59,6 +60,8 @@ test('kit bundle exposes every component', () => {
       useEffect: () => {},
       useRef: () => ({}),
       forwardRef: (f) => f,
+      createContext: (v) => ({ Provider: 'p', _value: v }),
+      useContext: (c) => c._value,
     },
     ReactDOM: {},
   };
@@ -71,4 +74,5 @@ test('kit bundle exposes every component', () => {
   const names = exportNames();
   assert.equal(names.length, 31);
   for (const name of names) assert.equal(typeof ns[name], 'function', `${name} is not a function`);
+  for (const name of NON_COMPONENT_EXPORTS) assert.equal(typeof ns[name], 'function', `${name} is not a function`);
 });

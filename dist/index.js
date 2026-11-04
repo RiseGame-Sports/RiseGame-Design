@@ -4,6 +4,7 @@ export { Badge } from './components/core/Badge.js';
 export { Button } from './components/core/Button.js';
 export { Card } from './components/core/Card.js';
 export { Icon } from './components/core/Icon.js';
+export { registerIcons } from './components/core/icons.js';
 export { IconButton } from './components/core/IconButton.js';
 export { Logo } from './components/core/Logo.js';
 export { Tag } from './components/core/Tag.js';

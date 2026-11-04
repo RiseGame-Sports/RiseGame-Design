@@ -73,10 +73,18 @@ The kit pages load `docs/ui-kits/ds-bundle.js`, which `npm run build` generates 
 
 `Logo`, `SiteHeader` and `Testimonial` load the marks bundled in `assets/logos` through `new URL(..., import.meta.url)`, which Vite, webpack 5, Next.js and Parcel handle automatically. To serve them from your own folder or a CDN, pass `assetBase="/brand/"`.
 
-## Known gaps
+## Fonts and icons
 
-- **Icons** come from Lucide, loaded from the unpkg CDN. That's a stand-in until RiseGame has its own set. Offline or locked-down apps won't show them. Swap the URL in `src/components/core/Icon.jsx` to change the source.
-- **Fonts** (Barlow Condensed and Roboto) load from Google Fonts through `base.css`. Licensed files can replace them later.
+Nothing loads from the network. `styles.css` imports `fonts.css`, which points at the Barlow Condensed and Roboto files in `dist/fonts/` (latin subset, from Fontsource, SIL Open Font License). Import `styles.css` and the bundler copies the fonts with it.
+
+`Icon` draws Lucide glyphs through `lucide-react`. The package ships the icons its components and kits use (`src/components/core/icons.js`); an unknown name renders an empty box of the same size. To add a glyph, register it once at startup:
+
+```jsx
+import { registerIcons } from '@risegame/design-system';
+import { Flag } from 'lucide-react';
+
+registerIcons({ flag: Flag });
+```
 
 ## Changing the system
 
