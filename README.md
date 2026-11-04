@@ -80,7 +80,7 @@ The kit pages load `docs/ui-kits/ds-bundle.js`, which `npm run build` generates 
 
 ## Changing the system
 
-1. Edit `src/` (components, styles) or `tokens/tokens.json`.
+1. Edit `src/` (components, styles) or `tokens/tokens.json`. Tokens change only in `tokens/tokens.json`; `dist/styles/tokens.css` and `dist/tokens.js` are generated from it.
 2. Run `npm install` and then `npm run build` to regenerate `dist/` and the kit bundle.
 3. Commit `src/` and `dist/` together, bump the version in `package.json`, and tag the release.
 

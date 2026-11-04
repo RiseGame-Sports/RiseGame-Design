@@ -4,6 +4,7 @@ import { transformAsync } from '@babel/core';
 import { promises as fs } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { flatVars, loadTokens, renderTokensCss } from './tokens.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const src = path.join(root, 'src');
@@ -41,17 +42,10 @@ for (const file of await walk(src)) {
 }
 
 // tokens as JS: the raw tokens.json plus a flat map of CSS custom property -> value
-const tokens = JSON.parse(await fs.readFile(path.join(root, 'tokens', 'tokens.json'), 'utf8'));
+const tokens = loadTokens();
 const vars = {};
-const first = tokens.color.themes[0].id;
-for (const t of tokens.color.tokens) {
-  const v = typeof t.value === 'string' ? t.value : t.value[first];
-  vars['--' + t.name] = v.replace(/^\{(.+)\}$/, 'var(--$1)');
-}
-for (const [fam, val] of Object.entries(tokens)) {
-  if (val && Array.isArray(val.tokens) && fam !== 'color') for (const t of val.tokens) vars['--' + t.name] = t.value;
-}
-for (const [k, v] of Object.entries(tokens.type.families)) vars['--font-' + k] = v;
+for (const v of flatVars(tokens)) vars['--' + v.name] = v.ref ? `var(--${v.ref})` : v.value;
+await fs.writeFile(path.join(dist, 'styles', 'tokens.css'), renderTokensCss(tokens));
 await fs.writeFile(
   path.join(dist, 'tokens.js'),
   `// Generated from tokens/tokens.json by scripts/build.mjs\nexport const tokens = ${JSON.stringify(tokens, null, 1)};\nexport const cssVars = ${JSON.stringify(vars, null, 1)};\nexport default tokens;\n`
