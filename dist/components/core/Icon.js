@@ -11,7 +11,7 @@ export function Icon({
   title,
   ...rest
 }) {
-  const Glyph = ICONS[name];
+  const Glyph = Object.hasOwn(ICONS, name) ? ICONS[name] : null;
   const a11y = title ? {
     role: 'img',
     'aria-label': title

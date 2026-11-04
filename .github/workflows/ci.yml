@@ -14,5 +14,7 @@ jobs:
       - run: npm ci
       - run: npm run build
       - name: Committed outputs are current
-        run: git diff --exit-code -- . ':(exclude)docs/ui-kits/ds-bundle.js'
+        run: |
+          git status --porcelain
+          test -z "$(git status --porcelain)"
       - run: npm test

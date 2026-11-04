@@ -220,7 +220,7 @@ Rules:
 No licensed font binaries came with the pack. The package bundles **Barlow Condensed** and
 **Roboto**, the same families the live site uses, from Fontsource (SIL Open Font License, latin
 subset). `npm run build` copies them into `dist/fonts/` and writes `dist/styles/fonts.css`. To use
-licensed files instead, change the `FONTS` list in `scripts/build.mjs`.
+licensed files instead, change the font step in `scripts/build.mjs`.
 
 ---
 

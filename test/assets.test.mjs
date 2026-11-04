@@ -122,7 +122,7 @@ test('icon names used in src are registered', async () => {
   const { ICONS } = await loadIcons();
   const used = iconNamesInUse();
   assert.ok(used.size >= 30, `expected 30+ icon names in use, found ${used.size}`);
-  const missing = [...used].filter(([name]) => !(name in ICONS)).map(([name, file]) => `${name} (${file})`);
+  const missing = [...used].filter(([name]) => !Object.hasOwn(ICONS, name)).map(([name, file]) => `${name} (${file})`);
   assert.deepEqual(missing, []);
 });
 
@@ -134,7 +134,7 @@ test('brand book slugs are registered', async () => {
   const list = book.slice(start, book.indexOf('\n\n', start));
   const slugs = [...list.matchAll(/`([a-z0-9-]+)`/g)].map((m) => m[1]);
   assert.ok(slugs.length >= 20, `expected 20+ slugs, found ${slugs.length}`);
-  assert.deepEqual(slugs.filter((s) => !(s in ICONS)), []);
+  assert.deepEqual(slugs.filter((s) => !Object.hasOwn(ICONS, s)), []);
 });
 
 test('icons are named imports from lucide-react', () => {
@@ -171,3 +171,15 @@ test('unknown icon does not throw', async () => {
   assert.match(html, /height:20px/);
   assert.doesNotMatch(html, /<svg/);
 });
+
+for (const name of ['constructor', '__proto__', 'hasOwnProperty', 'toString']) {
+  test(`inherited name "${name}" renders an empty box`, async () => {
+    const { Icon, createElement, renderToString } = await loadIcons();
+    let html;
+    assert.doesNotThrow(() => { html = renderToString(createElement(Icon, { name })); });
+    assert.match(html, /width:20px/);
+    assert.doesNotMatch(html, /<svg/);
+    assert.doesNotMatch(html, /object/i);
+    assert.match(html, /<span[^>]*><\/span>$/);
+  });
+}
