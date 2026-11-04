@@ -21,7 +21,6 @@
     },
     "./tokens.json": "./tokens/tokens.json",
     "./assets/*": "./assets/*",
-    "./umd": "./umd/risegame-design.umd.js",
     "./package.json": "./package.json"
   },
   "sideEffects": [
@@ -31,12 +30,12 @@
     "dist",
     "assets",
     "tokens",
-    "umd",
     "docs",
     "README.md"
   ],
   "scripts": {
     "build": "node scripts/build.mjs",
+    "test": "node --test test/",
     "prepublishOnly": "npm run build"
   },
   "peerDependencies": {

@@ -1,6 +1,6 @@
 # Dialog
 
-Centred modal over a 60% black scrim — confirm a slot booking, close signups, publish reports.
+Centered modal over a 60% black scrim — confirm a slot booking, close signups, publish reports.
 
     <Dialog title="Close signups?" onClose={fn}
       footer={<><Button variant="ghost">Cancel</Button><Button>Close signups</Button></>}>

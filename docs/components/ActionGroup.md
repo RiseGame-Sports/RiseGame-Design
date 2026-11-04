@@ -8,7 +8,7 @@ Lays out a screen's primary and secondary action the way the hierarchy rules ask
     </ActionGroup>
 
 The consumer provides
-- One `Button` `primary` first, then at most one `Button` `secondary`. ActionGroup makes each full width of its slot, so labels sit centred.
+- One `Button` `primary` first, then at most one `Button` `secondary`. ActionGroup makes each full width of its slot, so labels sit centered.
 - `layout`: `stack` on phones, `row` on tablets, `auto` (default) to wrap by available width.
 
 Do

@@ -55,7 +55,6 @@ Put `className="rg-dark"` (or a black background) on dark screens and pass `onDa
 | `@risegame/design-system/tokens.json` | The source tokens file. |
 | `@risegame/design-system/assets/logos/*.png` | Wordmarks, stacked lockups, R marks and rockets, in black and white ink. |
 | `@risegame/design-system/assets/qr/risegame-qr-code.jpg` | The official QR code. |
-| `@risegame/design-system/umd` | A single browser script that sets `window.RiseGameDesignSystem_66bdc7`, for pages without a build step. Load React 18 first. |
 
 Each component has a guide in [`docs/components/`](docs/components) covering what it's for, what you pass it, and the do's and don'ts.
 

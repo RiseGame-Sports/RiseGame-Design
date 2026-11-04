@@ -8,4 +8,4 @@ Renders a supplied RiseGame mark at a fixed height — the only correct way to p
 Notes
 - Set assetBase to the relative path from your page to assets/.
 - Clear space: at least the width of the rocket fins on all four sides.
-- Do not stretch, rotate, shadow, recolour the trail, or use the retired circular green R.
+- Do not stretch, rotate, shadow, recolor the trail, or use the retired circular green R.

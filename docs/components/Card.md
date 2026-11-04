@@ -9,4 +9,4 @@ The default container: 8px radius, 1px hairline border, whisper-thin shadow. Fla
 
 Notes
 - dark tone for black chrome; hover border goes accent there, ink on light.
-- No coloured left-border accents, no gradient fills.
+- No colored left-border accents, no gradient fills.

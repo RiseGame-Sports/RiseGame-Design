@@ -14,4 +14,4 @@ Do
 
 Don't
 - Use an icon-only button for an action with no universal glyph.
-- Colour the icon or the button accent. The screen's one green action lives outside the list.
+- Color the icon or the button accent. The screen's one green action lives outside the list.
