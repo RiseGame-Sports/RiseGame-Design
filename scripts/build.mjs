@@ -61,3 +61,5 @@ await fs.writeFile(
   'export declare const tokens: Record<string, any>;\nexport declare const cssVars: Record<string, string>;\nexport default tokens;\n'
 );
 console.log('built dist/');
+
+await import('./build-kits.mjs');

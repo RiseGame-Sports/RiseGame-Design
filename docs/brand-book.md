@@ -9,14 +9,14 @@ Momentum, not sport-clipart.
 
 ## Sources this system was built from
 
-Everything here is derived from the brand pack (logo masters in the Originals asset group, the brief in `brief/design.md`) plus the live public site.
+Everything here is derived from the brand pack (logo masters and the brief, both in `docs/sources/`) plus the live public site.
 No product source code, Figma file or app screenshots were provided.
 
 | Source | What came from it |
 |---|---|
-| `brief/design.md` — internal design brief, locked from Aaron's Sep 5 2026 logo pack, live risegame.com and the Aug 28 brand book | Color values, type roles, radius rules, product names + jobs, logo rules, do/don't list |
-| `uploads/*.png` / `*.ai` / `*.eps` / `*.psd` — the Sep 5 2026 logo pack | The marks in `assets/Logos/` (PNGs trimmed and recolored programmatically); PNG masters in `assets/Originals/` |
-| `uploads/RG QR Code.jpg` | `assets/QR/risegame-qr-code.jpg` |
+| `docs/sources/design.md`: internal design brief, locked from Aaron's Sep 5 2026 logo pack, live risegame.com and the Aug 28 brand book | Color values, type roles, radius rules, product names + jobs, logo rules, do/don't list |
+| The Sep 5 2026 logo pack (`*.png` / `*.ai` / `*.eps` / `*.psd`) | The marks in `assets/logos/` (PNGs trimmed and recolored programmatically); PNG masters in `docs/sources/` |
+| `docs/sources/RG QR Code.jpg` | `assets/qr/risegame-qr-code.jpg` |
 | https://risegame.com/ and https://www.risegame.com/products | Verbatim marketing copy, testimonials, nav structure, product one-liners |
 | Referenced in the brief but **not supplied**: `/workspace/risegame-brand-guidelines.md` §5 (full voice), `/workspace/risegame-logos/from-site/risegame-logo.svg`, licensed font files | Gaps flagged below |
 
@@ -129,7 +129,7 @@ repeating patterns, no textures, no hand-drawn illustration, no bluish-purple an
 **Imagery.** Real youth sports and real leagues — parents on the sideline, kids on the field.
 Natural daylight, warm-neutral, un-stylised; no heavy grade, no grain, no duotone. Sport lives in
 the photo, not in unique copy per sport. The brand pack shipped no photography, so kits use
-labelled placeholder blocks (`ui_kits/marketing-site/Photo.jsx`) — swap in real photos before use.
+labeled placeholder blocks (`docs/ui-kits/marketing-site/Photo.jsx`); swap in real photos before use.
 
 **Transparency and blur.** Almost never. Transparency appears in the modal scrim (60% black) and
 the photo scrim. There is no frosted glass and no backdrop blur.
@@ -175,13 +175,13 @@ Every product screen has one job. The layout, the type and the green all point a
 
 **Type carries the hierarchy, not color.** The headline is all `text-inverse` (white) on dark or `text-heading` on light; never color part of it. Eyebrows are uppercase `text-inverse-muted` / `text-muted`, never accent. Supporting copy is muted body text. Size steps do the ranking: display or h1 for the screen's question, Roboto 500 at 16px for row titles, 14px muted for meta lines.
 
-**Lists of tools and items.** Use `ToolList` with `ToolRow` children: one dark card holding rows, not a grid of separate boxes. Each row has a 40px `rg-dark-surface-3` tile with a white 22px outline icon, a title and a muted meta line, then a labelled `secondary` small button on the right. Don't use icon-only buttons for actions that lack a universal glyph. If a row has no button, the whole row is the tap target and ends in a muted `chevron-right`.
+**Lists of tools and items.** Use `ToolList` with `ToolRow` children: one dark card holding rows, not a grid of separate boxes. Each row has a 40px `rg-dark-surface-3` tile with a white 22px outline icon, a title and a muted meta line, then a labeled `secondary` small button on the right. Don't use icon-only buttons for actions that lack a universal glyph. If a row has no button, the whole row is the tap target and ends in a muted `chevron-right`.
 
 **Sections.** Use `SectionCard`: a muted eyebrow above a plain dark card. No dashed boxes, no green fieldset borders and no labels set into the border line.
 
 **Tab bars and nav.** Icons and labels are `rg-white` when active and `rg-dark-mute` when not, and the active item gets a 2px accent bar. Color stays off the icon and label. `AppTabBar` follows this rule.
 
-The Tracker home redesign (Nov 2026) is the worked example of these rules, in phone and tablet, with and without a game in progress. Where the `Screens` group disagrees with this section (green labels in fieldset borders, a green active tab label), this section wins.
+The Tracker home redesign (Nov 2026) is the worked example of these rules, in phone and tablet, with and without a game in progress. Where the pre-redesign Tracker screenshots in `docs/sources/` disagree with this section (green labels in fieldset borders, a green active tab label), this section wins.
 
 ---
 
@@ -189,14 +189,14 @@ The Tracker home redesign (Nov 2026) is the worked example of these rules, in ph
 
 **The brand pack contains no icon set** — no icon font, no SVG sprite, no PNG glyphs. The one
 piece of proprietary iconography is the rocket / **R** mark itself, which is used as an app icon,
-favicon, avatar and small-chrome glyph (`assets/Logos/rocket-*.png`, `assets/Logos/risegame-r-*.png`). The
+favicon, avatar and small-chrome glyph (`assets/logos/rocket-*.png`, `assets/logos/risegame-r-*.png`). The
 live site does the same thing: testimonials use the R mark where an avatar would go.
 
 **Substitution (flagged):** UI icons use **Lucide**, loaded from CDN via `lucide-static` and
-masked so glyphs inherit `currentColor` — see `components/src/core/Icon.jsx`. Lucide was chosen for
+masked so glyphs inherit `currentColor` (see `src/components/core/Icon.jsx`). Lucide was chosen for
 its thin, geometric, uniform-stroke outlines, which sit closest to the flat / minimal / tech
 direction in the brief. **This is a substitution, not a brand decision** — if RiseGame has a real
-icon set, replace `Icon.jsx`'s base URL (and rebuild `components/bundle.js`) and the whole system follows.
+icon set, replace `Icon.jsx`'s base URL (and run `npm run build`) and the whole system follows.
 
 Rules:
 
@@ -216,38 +216,36 @@ Rules:
 
 ## Font substitution — needs your input
 
-No licensed font binaries came with the pack, so `components/bundle.css` loads **Barlow Condensed** and
+No licensed font binaries came with the pack, so `src/styles/base.css` loads **Barlow Condensed** and
 **Roboto** from Google Fonts — the same families the live site uses, so this is a hosting
 substitution rather than a typeface substitution. If you can supply hosted files, drop them in
-`fonts/`, list them in `tokens.json` `type.fonts`, and remove the `@import` at the top of `components/bundle.css`. This is one of the open gaps
-already listed in `brief/design.md`.
+`fonts/`, list them in `tokens/tokens.json` `type.fonts`, and remove the `@import` at the top of `src/styles/base.css`. This is one of the open gaps
+already listed in `docs/sources/design.md`.
 
 ---
 
-## Shipped product reference: RiseGame Tracker
+## Pre-redesign Tracker, kept for layout reference only
 
-The `Screens` asset group holds eight shipped RiseGame Tracker screens (parent home light and dark, My games, Track a game, pitch entry, the safe-result and on-base dialogs, baserunning). They are the only real product UI in this system, so treat them as ground truth for product layout over the proposed kits below.
+`docs/sources/` holds eight screenshots of RiseGame Tracker as it shipped before the Nov 2026 redesign (`Screenshot 2026-09-05 at 11.29.48 AM.png` to `11.31.30 AM.png`: parent home light and dark, My games, Track a game, pitch entry, the safe-result and on-base dialogs, baserunning). Use them for layout and flow only. They are not ground truth for styling.
 
-What they confirm: black chrome with white type, Barlow Condensed uppercase on big choice buttons, Roboto everywhere else, 2px-radius square buttons, fieldset cards with an uppercase green eyebrow in the border, a bottom tab bar with a green active underline, and dialogs with an accent top edge.
-
-**Color: ignore the screens.** The green in these screenshots is not the brand accent. Take every color from the tokens: `rg-accent` `#1DFE1B` is the UI accent, `rg-trail` stays inside the mark files. Use the screens for layout, hierarchy and patterns only.
+Where they disagree with this book, this book wins. Their green eyebrows set into fieldset card borders and green active tab labels break the green budget; sections use `SectionCard` and tab bars use `AppTabBar` instead. Their green is not the brand accent either: take every color from the tokens (`rg-accent` `#1DFE1B` is the UI accent, `rg-trail` stays inside the mark files).
 
 ---
 
 ## Index
 
 **Root**
-- `README.md` — this file.
-- `tokens.json` — every color, type style, spacing step, size, radius, shadow, weight, duration and easing. The page compiles `tokens.css` from it.
-- `components/bundle.css` — font import, element resets, `.rg-eyebrow` / `.rg-dark` helpers, and the two composite values (`--transition-control`, `--scrim-bottom`).
-- `components/bundle.js` — all 31 components on `window.RiseGameDesignSystem_66bdc7`; `components/index.d.ts` for props; sources in `components/src/<group>/`.
-- `asset-map.js` — maps mark file names to the stored logo files. Load it before the bundle so `Logo`, `SiteHeader` and `Testimonial` resolve the marks.
-- `kit.css` — one stylesheet for kits and templates: `tokens.css` plus `components/bundle.css`.
-- `brief/design.md` — the internal design brief. `handoff/elevate-redesign.md` — the Elevate redesign handoff.
+- `README.md`: install, imports and the component list.
+- `tokens/tokens.json`: every color, type style, spacing step, size, radius, shadow, weight, duration and easing. `src/styles/tokens.css` carries the same values as CSS custom properties.
+- `src/styles/base.css`: font import, element resets, `.rg-eyebrow` / `.rg-dark` helpers, and the two composite values (`--transition-control`, `--scrim-bottom`). `@risegame/design-system/styles.css` loads tokens and base together.
+- `src/components/<group>/`: component sources; `src/index.d.ts` for props; `docs/components/<Name>.md` for usage rules.
+- `docs/ui-kits/ds-bundle.js`: all 31 components on `window.RiseGameDesignSystem_66bdc7` for the UI kit pages, built by `npm run build` (not committed). `Logo`, `SiteHeader` and `Testimonial` resolve the marks from `assets/logos/` on their own.
+- `docs/guidelines/`: one HTML card per foundation (color, type, spacing, radius, elevation, motion, brand marks).
+- `docs/sources/design.md`: the internal design brief. `docs/handoff/elevate-redesign.md`: the Elevate redesign handoff.
 
-**Assets** — `Logos` (wordmarks, stacked lockups, R marks, rockets, black and white ink), `QR`, `Screens` (shipped Tracker), `Originals` (logo pack masters, including the retired circular R), `Reference` (risegame.com screenshots).
+**Assets**: `assets/logos/` (wordmarks, stacked lockups, R marks, rockets, black and white ink) and `assets/qr/`. Source material lives in `docs/sources/`: the logo pack masters (including the retired circular R), the pre-redesign Tracker screenshots and a risegame.com screenshot.
 
-**Components** (each with a live preview, guidelines and types)
+**Components** (each with usage rules in `docs/components/` and types in `src/index.d.ts`)
 
 - Core — **Button**, **IconButton**, **Icon**, **Badge**, **Tag**, **Card**, **Logo**
 - Forms — **Field**, **Input**, **Select**, **Checkbox**, **Radio**, **Switch**
@@ -264,15 +262,13 @@ the supplied marks the only way to place the brand mark; **ScoreScale**, **Playe
 repeats. If any of these already exist in the real codebase under different names, rename here to
 match.
 
-**UI kits** (`ui_kits/<product>/`, each with its own `README.md` and `index.html`)
+**UI kits** (`docs/ui-kits/<product>/`, each with its own `README.md` and `index.html`)
 
 - `marketing-site/` — risegame.com Home and Products, verbatim copy.
 - `tryout-scheduler/` — league-admin slot manager + the four-step parent signup flow.
 - `tryouts-app/` — coach roster and on-field evaluation scoring, in an iOS frame.
 - `draft-and-reports/` — live draft board and the parent-readable player report.
-- `elevate/` — Elevate athlete, coach and family screens (see `handoff/elevate-redesign.md`).
-
-**Templates** — `templates/risegame-deck/`, `templates/risegame-letterhead/`, `templates/email-templates/`.
+- `elevate/`: Elevate athlete, coach and family screens (see `docs/handoff/elevate-redesign.md`).
 
 **Kit caveat.** Only the marketing site could be checked against a real source. The product
 kits are built from locked copy, product jobs and these foundations — the *styling* is ground

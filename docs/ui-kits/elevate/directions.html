@@ -1,0 +1,208 @@
+<!-- @dsCard group="Elevate (redesign)" viewport="1360x980" name="Elevate — three dark directions" subtitle="Type-led, dense dashboard, and accent-as-surface takes on the parent home" -->
+<!DOCTYPE html><html><head><meta charset="utf-8"><title>Elevate — dark design directions</title><link rel="stylesheet" href="../../../dist/styles/index.css">
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../ds-bundle.js"></script>
+<style>body{margin:0;background:var(--surface-chrome);font-family:var(--font-body)}.wrap{display:flex;gap:32px;padding:32px;align-items:flex-start;overflow-x:auto}.col{flex:0 0 402px;min-width:0;display:flex;flex-direction:column;gap:12px}.hd{display:flex;flex-direction:column;gap:4px}.hd b{font-family:var(--font-display);font-size:24px;font-weight:700;text-transform:uppercase;line-height:1.05}.hd span{font-size:12px;line-height:1.5;color:var(--text-muted)}.dev{width:402px;height:800px;background:#000;border-radius:12px;overflow:hidden;display:flex;flex-direction:column;box-shadow:var(--shadow-raised)}.eyebrow{font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase}</style></head>
+<body><div id="root"></div>
+<script src="data.js"></script>
+<script type="text/babel" src="shell.jsx"></script>
+<script type="text/babel">
+const { Button, IconButton, Badge, Tag, Icon, Logo, AppTabBar, ProgressBar } = window.RiseGameDesignSystem_66bdc7;
+const D = window.ELEVATE;
+const A = D.athletes;
+
+function Bar({ label }) {
+  return <AppTabBar value="dashboard" onChange={()=>{}} items={[
+    {value:'dashboard',label:'Dashboard',icon:'layout-grid'},
+    {value:'workouts',label:'Workouts',icon:'dumbbell'},
+    {value:'metrics',label:'Metrics',icon:'chart-no-axes-column'},
+    {value:'profile',label:'Profile',icon:'user-round'}]} />;
+}
+
+function Chrome({ children }) {
+  return (
+    <div style={{display:'flex',alignItems:'center',gap:10,padding:'14px 16px',borderBottom:'1px solid var(--rg-dark-line)'}}>
+      <Logo variant="r" onDark height={24} assetBase="../../../assets/logos/" />
+      <span style={{fontFamily:'var(--font-display)',fontSize:19,fontWeight:700,textTransform:'uppercase',color:'#fff',flex:1}}>Elevate</span>
+      {children}
+    </div>
+  );
+}
+
+/* ── A · TYPE-LED ─────────────────────────────────────────────
+   No panels. Pure black, hairline rules, data carried entirely by
+   condensed numerals. The most editorial reading of the brand.      */
+function TypeLed() {
+  return (
+    <div className="dev">
+      <Chrome><span className="eyebrow" style={{color:'var(--rg-dark-mute)'}}>Warren</span></Chrome>
+      <div style={{flex:1,overflowY:'auto',color:'#fff'}}>
+        <div style={{padding:'28px 16px 20px'}}>
+          <div className="eyebrow" style={{color:'var(--rg-accent)'}}>Week of Sep 1</div>
+          <div style={{display:'flex',alignItems:'flex-start',gap:8,marginTop:10}}>
+            <span style={{fontFamily:'var(--font-display)',fontSize:120,fontWeight:700,lineHeight:.82,letterSpacing:'-.02em'}}>2</span>
+            <span style={{fontFamily:'var(--font-display)',fontSize:30,fontWeight:700,lineHeight:1.05,textTransform:'uppercase',paddingTop:8}}>workouts<br/>still open</span>
+          </div>
+        </div>
+        {A.map((a,i)=>(
+          <div key={a.id} style={{padding:'20px 16px',borderTop:'1px solid var(--rg-dark-line)'}}>
+            <div style={{display:'flex',alignItems:'baseline',gap:8}}>
+              <span style={{fontFamily:'var(--font-display)',fontSize:34,fontWeight:700,lineHeight:1,textTransform:'uppercase'}}>{a.name.split(' ')[0]}</span>
+              <span style={{fontFamily:'var(--font-display)',fontSize:34,fontWeight:700,lineHeight:1,textTransform:'uppercase',color:'var(--rg-dark-mute)'}}>{a.name.split(' ')[1]}</span>
+              <Icon name="chevron-right" size={20} style={{marginLeft:'auto',color:'var(--rg-dark-mute)'}} />
+            </div>
+            <div className="eyebrow" style={{color:'var(--rg-dark-mute)',marginTop:6}}>{a.sports.join(' · ')}</div>
+            <div style={{display:'flex',gap:26,marginTop:14}}>
+              {[[a.week.workouts+'/'+a.week.assigned,'workouts'],[a.week.attendance+'%','attendance'],[a.general[0].entries.slice(-1)[0].label,'height'],[a.general[1].entries.slice(-1)[0].label,'weight']].map(([v,l])=>(
+                <span key={l} style={{display:'flex',flexDirection:'column'}}>
+                  <b style={{fontFamily:'var(--font-display)',fontSize:24,fontWeight:700,lineHeight:1}}>{v}</b>
+                  <span className="eyebrow" style={{color:'var(--rg-dark-mute)',marginTop:3}}>{l}</span>
+                </span>
+              ))}
+            </div>
+          </div>
+        ))}
+        <div style={{padding:'20px 16px',borderTop:'1px solid var(--rg-dark-line)'}}>
+          <span className="eyebrow" style={{color:'var(--rg-accent)'}}>+ Add another athlete</span>
+        </div>
+      </div>
+      <Bar />
+    </div>
+  );
+}
+
+/* ── B · DENSE DASHBOARD ──────────────────────────────────────
+   Numbers first: a 2-up metric grid above the fold, athletes
+   compressed to switchable chips. Built for the parent who checks
+   it every night.                                                   */
+function Dense() {
+  const a = A[0];
+  const tiles = [
+    ['3/4','workouts done',null],
+    ['92%','attendance',null],
+    [a.general[0].entries.slice(-1)[0].label,'height','+5 in'],
+    [a.general[1].entries.slice(-1)[0].label,'weight','+8 lbs'],
+    ['54 mph','exit velo','+6'],
+    ['9.10 s','60 yard','-0.30'],
+  ];
+  return (
+    <div className="dev">
+      <Chrome><IconButton icon="bell" label="Alerts" onDark size="sm" /></Chrome>
+      <div style={{display:'flex',gap:6,padding:'12px 16px',borderBottom:'1px solid var(--rg-dark-line)'}}>
+        {A.map((x,i)=>(
+          <span key={x.id} style={{display:'inline-flex',alignItems:'center',gap:7,height:34,padding:'0 12px 0 4px',borderRadius:'var(--radius-sm)',
+            background:i===0?'var(--rg-accent)':'transparent',border:'1px solid '+(i===0?'var(--rg-accent)':'var(--rg-dark-line)'),
+            color:i===0?'#000':'#fff',fontSize:13,fontWeight:500}}>
+            <span style={{display:'inline-flex',alignItems:'center',justifyContent:'center',width:26,height:26,borderRadius:2,
+              background:i===0?'#000':'var(--rg-dark-surface-3)',color:i===0?'var(--rg-accent)':'#fff',
+              fontFamily:'var(--font-display)',fontSize:12,fontWeight:700}}>{x.initials}</span>
+            {x.name.split(' ')[0]}
+          </span>
+        ))}
+        <span style={{display:'inline-flex',alignItems:'center',justifyContent:'center',width:34,height:34,borderRadius:'var(--radius-sm)',border:'1px dashed var(--rg-dark-line)',color:'var(--rg-dark-mute)'}}><Icon name="plus" size={15} /></span>
+      </div>
+      <div style={{flex:1,overflowY:'auto',color:'#fff'}}>
+        <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:1,background:'var(--rg-dark-line)'}}>
+          {tiles.map(([v,l,d])=>(
+            <div key={l} style={{background:'#000',padding:'16px 14px',display:'flex',flexDirection:'column',gap:4}}>
+              <span className="eyebrow" style={{color:'var(--rg-dark-mute)'}}>{l}</span>
+              <span style={{fontFamily:'var(--font-display)',fontSize:34,fontWeight:700,lineHeight:1}}>{v}</span>
+              {d?<span style={{fontSize:11,fontWeight:700,color:'var(--rg-accent)'}}>{d}</span>:<span style={{fontSize:11,color:'var(--rg-dark-mute)'}}>this week</span>}
+            </div>
+          ))}
+        </div>
+        <div style={{padding:'16px 14px',borderTop:'1px solid var(--rg-dark-line)'}}>
+          <ProgressBar onDark label="Assignments complete" value={2} max={3} />
+        </div>
+        {a.assignments.map((x,i)=>(
+          <div key={x.title} style={{display:'flex',alignItems:'center',gap:12,padding:'12px 14px',borderTop:'1px solid var(--rg-dark-line)'}}>
+            <span style={{display:'inline-flex',alignItems:'center',justifyContent:'center',width:24,height:24,borderRadius:2,
+              background:x.done?'var(--rg-accent)':'transparent',border:'1px solid '+(x.done?'var(--rg-accent)':'var(--rg-dark-line)'),color:'#000'}}>
+              {x.done?<Icon name="check" size={14} />:null}</span>
+            <span style={{flex:1,minWidth:0}}>
+              <span style={{display:'block',fontFamily:'var(--font-display)',fontSize:17,fontWeight:700}}>{x.title}</span>
+              <span className="eyebrow" style={{display:'block',color:'var(--rg-dark-mute)',marginTop:2}}>{x.status}</span>
+            </span>
+            <Badge tone={x.done?'accent':'dark'}>{x.pts} pts</Badge>
+          </div>
+        ))}
+        <div style={{padding:14,borderTop:'1px solid var(--rg-dark-line)'}}>
+          <Button fullWidth variant="secondary" onDark iconLeft="file-text">Request athlete report</Button>
+        </div>
+      </div>
+      <Bar />
+    </div>
+  );
+}
+
+/* ── C · ACCENT AS SURFACE ────────────────────────────────────
+   The week's one job sits in a full-bleed neon block with a black
+   label; everything below goes monochrome so the block is the only
+   place the eye lands.                                              */
+function AccentBlock() {
+  const a = A[0];
+  return (
+    <div className="dev">
+      <Chrome><span className="eyebrow" style={{color:'var(--rg-dark-mute)'}}>Warren</span></Chrome>
+      <div style={{flex:1,overflowY:'auto',color:'#fff'}}>
+        <div style={{background:'var(--rg-accent)',color:'#000',padding:'22px 18px 18px'}}>
+          <div className="eyebrow">Due today</div>
+          <div style={{fontFamily:'var(--font-display)',fontSize:44,fontWeight:700,lineHeight:1.0,textTransform:'uppercase',marginTop:8}}>Thursday Legs</div>
+          <div style={{fontSize:13,fontWeight:500,marginTop:6}}>Jameson · Strength &amp; Conditioning · 20 pts</div>
+          <div style={{display:'flex',gap:8,marginTop:16}}>
+            <span style={{display:'inline-flex',alignItems:'center',gap:8,height:44,padding:'0 18px',background:'#000',color:'var(--rg-accent)',borderRadius:2,fontSize:15,fontWeight:500}}>Open workout<Icon name="chevron-right" size={17} /></span>
+            <span style={{display:'inline-flex',alignItems:'center',height:44,padding:'0 16px',border:'1px solid #000',borderRadius:2,fontSize:15,fontWeight:500}}>Mark done</span>
+          </div>
+        </div>
+        <div style={{padding:'18px 16px 10px'}}>
+          <span className="eyebrow" style={{color:'var(--rg-dark-mute)'}}>Your athletes</span>
+        </div>
+        {A.map((x,i)=>(
+          <div key={x.id} style={{display:'flex',alignItems:'center',gap:12,padding:'14px 16px',borderTop:'1px solid var(--rg-dark-line)'}}>
+            <span style={{display:'inline-flex',alignItems:'center',justifyContent:'center',width:40,height:40,borderRadius:'var(--radius-md)',
+              border:'1px solid var(--rg-dark-line)',background:'var(--rg-dark-surface-2)',
+              fontFamily:'var(--font-display)',fontSize:16,fontWeight:700,color:'#fff'}}>{x.initials}</span>
+            <span style={{flex:1,minWidth:0}}>
+              <span style={{display:'block',fontFamily:'var(--font-display)',fontSize:19,fontWeight:700,lineHeight:1.1}}>{x.name}</span>
+              <span className="eyebrow" style={{display:'block',color:'var(--rg-dark-mute)',marginTop:3,whiteSpace:'nowrap',overflow:'hidden',textOverflow:'ellipsis'}}>{x.sports.join(' · ')}</span>
+            </span>
+            <span style={{fontFamily:'var(--font-display)',fontSize:20,fontWeight:700}}>{x.week.workouts}/{x.week.assigned}</span>
+            <Icon name="chevron-right" size={18} style={{color:'var(--rg-dark-mute)'}} />
+          </div>
+        ))}
+        <div style={{padding:'18px 16px 10px',borderTop:'1px solid var(--rg-dark-line)'}}>
+          <span className="eyebrow" style={{color:'var(--rg-dark-mute)'}}>Latest measurements</span>
+        </div>
+        <div style={{display:'flex',gap:10,padding:'0 16px 18px'}}>
+          {a.general.slice(0,3).map(c=>(
+            <div key={c.name} style={{flex:1,padding:'12px 12px 10px',border:'1px solid var(--rg-dark-line)',borderRadius:'var(--radius-md)'}}>
+              <span className="eyebrow" style={{color:'var(--rg-dark-mute)'}}>{c.name}</span>
+              <div style={{fontFamily:'var(--font-display)',fontSize:24,fontWeight:700,marginTop:4}}>{c.entries.slice(-1)[0].label}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+      <Bar />
+    </div>
+  );
+}
+
+const VARIANTS = [
+  ['A · Type-led', 'Panels removed entirely. Pure black, hairline rules, and condensed numerals doing all the work. Accent appears once, as the eyebrow. Most editorial, least app-like.', TypeLed],
+  ['B · Dense dashboard', 'Numbers above the fold in a hairline-split grid; athletes compress to switchable chips so the whole family fits in one bar. Built for a nightly check-in.', Dense],
+  ['C · Accent as surface', "The week's one job fills a neon block with a black label and an inverted button. Everything below drops to monochrome, so there is exactly one place to look.", AccentBlock],
+];
+
+ReactDOM.createRoot(document.getElementById('root')).render(
+  <div className="wrap">
+    {VARIANTS.map(([name,note,C])=>(
+      <div className="col" key={name}>
+        <div className="hd"><b>{name}</b><span>{note}</span></div>
+        <C />
+      </div>
+    ))}
+  </div>
+);
+</script></body></html>

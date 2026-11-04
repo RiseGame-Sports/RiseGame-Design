@@ -30,7 +30,8 @@
     "dist",
     "assets",
     "tokens",
-    "docs",
+    "docs/brand-book.md",
+    "docs/components",
     "README.md"
   ],
   "scripts": {
@@ -44,6 +45,7 @@
   },
   "devDependencies": {
     "@babel/core": "7.26.0",
-    "@babel/preset-react": "7.26.3"
+    "@babel/preset-react": "7.26.3",
+    "esbuild": "0.28.2"
   }
 }

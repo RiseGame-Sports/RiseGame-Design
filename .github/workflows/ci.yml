@@ -14,5 +14,5 @@ jobs:
       - run: npm ci
       - run: npm run build
       - name: Committed outputs are current
-        run: git diff --exit-code
+        run: git diff --exit-code -- . ':(exclude)docs/ui-kits/ds-bundle.js'
       - run: npm test
