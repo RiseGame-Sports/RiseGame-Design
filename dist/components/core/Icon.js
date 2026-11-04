@@ -1,7 +1,7 @@
 function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
 import React from 'react';
 
-// Lucide (via lucide-static on unpkg) is the substituted icon set — the RiseGame
+// Lucide (via lucide-static on unpkg) is the substituted icon set; the RiseGame
 // brand pack ships no icon library. Glyphs are masked so they inherit currentColor.
 const BASE = 'https://unpkg.com/lucide-static@0.544.0/icons/';
 export function Icon({

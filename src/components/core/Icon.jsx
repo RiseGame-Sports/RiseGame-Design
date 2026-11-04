@@ -1,6 +1,6 @@
 import React from 'react';
 
-// Lucide (via lucide-static on unpkg) is the substituted icon set — the RiseGame
+// Lucide (via lucide-static on unpkg) is the substituted icon set; the RiseGame
 // brand pack ships no icon library. Glyphs are masked so they inherit currentColor.
 const BASE = 'https://unpkg.com/lucide-static@0.544.0/icons/';
 

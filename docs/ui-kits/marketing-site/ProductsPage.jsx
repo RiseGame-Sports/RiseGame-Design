@@ -12,7 +12,7 @@ function ProductsPage() {
   return (
     <div>
       <Section dark tight>
-        <SectionHeading onDark level={1} eyebrow="Products" title="One connected flow for league admins" body="Scheduler to Tryouts to Draft — then Reports and Elevate as relevant." />
+        <SectionHeading onDark level={1} eyebrow="Products" title="One connected flow for league admins" body="Scheduler to Tryouts to Draft, then Reports and Elevate as relevant." />
       </Section>
 
       <Section tight>

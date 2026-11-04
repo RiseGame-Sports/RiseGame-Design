@@ -1,6 +1,6 @@
 # Icon
 
-A masked Lucide glyph that inherits currentColor — use it for every icon in RiseGame UI instead of hand-drawing SVG.
+A masked Lucide glyph that inherits currentColor. Use it for every icon in RiseGame UI instead of hand-drawing SVG.
 
     <Icon name="calendar-days" size={20} />
 

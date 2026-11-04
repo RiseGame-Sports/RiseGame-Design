@@ -2,4 +2,4 @@
 
 Short confirmation on ink, accent tick. One line, past tense.
 
-    <Toast>Slot saved — parents can book it now.</Toast>
+    <Toast>Slot saved. Parents can book it now.</Toast>

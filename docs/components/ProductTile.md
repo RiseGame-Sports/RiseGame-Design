@@ -1,6 +1,6 @@
 # ProductTile
 
-One product in the RiseGame ecosystem — accent glyph, name, the job it does, a text CTA.
+One product in the RiseGame ecosystem: accent glyph, name, the job it does, a text CTA.
 
     <ProductTile icon="calendar-days" name="Tryout Scheduler"
       job="The easiest way for leagues to manage tryout signups online."

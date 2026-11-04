@@ -1,5 +1,5 @@
 // Neutral photo placeholder. RiseGame photography is real youth-sports imagery;
-// no licensed photos shipped with the brand pack, so kits show labelled slots.
+// no licensed photos shipped with the brand pack, so kits show labeled slots.
 function Photo({ label, height = 320, ratio, style }) {
   return (
     <div style={{

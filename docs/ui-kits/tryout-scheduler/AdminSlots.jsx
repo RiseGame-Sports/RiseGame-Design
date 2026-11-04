@@ -63,7 +63,7 @@ function AdminSlots() {
 
         {tab === 'players' ? (
           <EmptyState icon="users" title="Registered players land here"
-            body="As parents reserve slots, every athlete shows up on this list — ready to push into the Tryouts app."
+            body="As parents reserve slots, every athlete shows up on this list, ready to push into the Tryouts app."
             action={<Button variant="secondary" iconLeft="upload">Import a player list</Button>} />
         ) : null}
 

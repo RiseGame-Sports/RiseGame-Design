@@ -16,7 +16,7 @@ window.ELEVATE = {
       assignments: [
         { title: 'Thursday Legs', sport: 'Strength & Conditioning', pts: 20, status: 'Due today', done: false },
         { title: 'Tuesday Agility Session', sport: 'Baseball', pts: 30, status: 'Complete', done: true },
-        { title: 'Arm Care — Band Series', sport: 'Baseball', pts: 15, status: 'Complete', done: true },
+        { title: 'Arm Care: Band Series', sport: 'Baseball', pts: 15, status: 'Complete', done: true },
       ],
     },
     { id: 'hw', initials: 'HW', name: 'Hannah Warren', hometown: 'Houston, TX', birthdate: 'Mar 2, 2012', gender: 'Female',

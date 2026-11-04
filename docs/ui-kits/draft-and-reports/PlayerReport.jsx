@@ -12,7 +12,7 @@ function PlayerReport() {
       </header>
 
       <div style={{ maxWidth: 860, margin: '0 auto', padding: 'var(--space-7) var(--space-5)', display: 'flex', flexDirection: 'column', gap: 'var(--space-6)' }}>
-        <SectionHeading eyebrow="Evaluation report" title={p.name + ' — ' + d.league.split(' · ')[1] + ' Tryouts'}
+        <SectionHeading eyebrow="Evaluation report" title={p.name + ', ' + d.league.split(' · ')[1] + ' Tryouts'}
           body="Every score below came from a coach on the field. Here is where your athlete stands and what to work on next." />
 
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(150px,1fr))', gap: 'var(--space-3)' }}>
@@ -25,7 +25,7 @@ function PlayerReport() {
         <Card style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-5)' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-3)' }}>
             <span style={{ fontFamily: 'var(--font-display)', fontSize: 'var(--size-h3)', fontWeight: 700, flex: 1 }}>Skill breakdown</span>
-            <Badge>1 – 5 scale</Badge>
+            <Badge>1 to 5 scale</Badge>
           </div>
           {d.drills.map((drill, i) => (
             <div key={drill} style={{ display: 'grid', gridTemplateColumns: 'minmax(0,1fr) 220px', gap: 'var(--space-4)', alignItems: 'center' }}>

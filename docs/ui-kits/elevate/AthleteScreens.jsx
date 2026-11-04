@@ -167,7 +167,7 @@ function CaptureCardScreen({ card, onBack }) {
               <Field onDark={dark} label={card.name + ' (' + card.unit + ')'} htmlFor="v"><Input id="v" onDark={dark} value={val} onChange={(e) => setVal(e.target.value)} placeholder="0" /></Field>
               <Field onDark={dark} label="Date" htmlFor="dt"><Input id="dt" onDark={dark} icon="calendar-days" defaultValue="Sep 5, 2026" /></Field>
             </div>
-            <Field onDark={dark} label="Notes" hint="Optional — what changed?" htmlFor="nt"><Input id="nt" onDark={dark} placeholder="Measured after practice" /></Field>
+            <Field onDark={dark} label="Notes" hint="Optional. What changed?" htmlFor="nt"><Input id="nt" onDark={dark} placeholder="Measured after practice" /></Field>
             <Button size="lg" fullWidth disabled={!val.trim()}>Record entry</Button>
           </div>
         </Panel>

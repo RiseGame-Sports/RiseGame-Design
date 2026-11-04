@@ -6,4 +6,4 @@ Tap-to-score row for coach evaluation. Always call the output "evaluation scores
 
 Notes
 - size="lg" (52px) for on-field mobile use; "sm" for read-only report tables.
-- No color ramp across the scale — only the selected number goes accent.
+- No color ramp across the scale: only the selected number goes accent.

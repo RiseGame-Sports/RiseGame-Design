@@ -90,9 +90,9 @@ function ParentSignup() {
 
       {step === 3 ? (
         <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-4)' }}>
-          <Toast>Slot reserved — check your email for the confirmation.</Toast>
+          <Toast>Slot reserved. Check your email for the confirmation.</Toast>
           <Card tone="alt" style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-4)' }}>
-            <SectionHeading level={3} eyebrow="You are on the list" title={player + ' — ' + division} body={slot.date + ' · ' + slot.time + ' · ' + slot.location} />
+            <SectionHeading level={3} eyebrow="You are on the list" title={player + ', ' + division} body={slot.date + ' · ' + slot.time + ' · ' + slot.location} />
             <div style={{ display: 'flex', gap: 'var(--space-2)', flexWrap: 'wrap' }}>
               <Button variant="secondary" iconLeft="calendar-plus">Add to calendar</Button>
               <Button variant="ghost" onClick={() => { setStep(0); setSlotId(null); setPlayer(''); }}>Sign up another player</Button>

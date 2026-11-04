@@ -11,7 +11,7 @@ export declare function Badge(props: BadgeProps): JSX.Element;
 
 /**
  * RiseGame button. Primary is neon-on-black; hover inverts to near-black with a
- * white label, exactly as risegame.com. Radius stays 2px — never pill.
+ * white label, exactly as risegame.com. Radius stays 2px, never pill.
  * @startingPoint section="Core" subtitle="Buttons, icon buttons, badges and tags" viewport="700x260"
  */
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
@@ -57,7 +57,7 @@ export declare function Icon(props: IconProps): JSX.Element;
 export interface IconButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   /** Lucide slug. */
   icon: string;
-  /** Required accessible label — icon buttons carry no visible text. */
+  /** Required accessible label: icon buttons carry no visible text. */
   label: string;
   variant?: 'ghost' | 'outline' | 'accent';
   size?: 'sm' | 'md' | 'lg';
@@ -67,7 +67,7 @@ export interface IconButtonProps extends React.ButtonHTMLAttributes<HTMLButtonEl
 export declare function IconButton(props: IconButtonProps): JSX.Element;
 
 /**
- * The RiseGame mark. Never redraw it — this component points at the supplied
+ * The RiseGame mark. Never redraw it: this component points at the supplied
  * PNGs in assets/. Rocket always points up; the trail stays neon green.
  */
 export interface LogoProps extends React.ImgHTMLAttributes<HTMLImageElement> {
@@ -105,7 +105,7 @@ export interface FieldProps extends React.HTMLAttributes<HTMLDivElement> {
   label?: string;
   /** Muted helper line under the control. */
   hint?: string;
-  /** Replaces the hint; rendered in ink, not red — RiseGame avoids alarm colour. */
+  /** Replaces the hint; rendered in ink, not red. RiseGame avoids alarm color. */
   error?: string;
   required?: boolean;
   htmlFor?: string;
@@ -168,7 +168,7 @@ export declare function AppTabBar(props: AppTabBarProps): JSX.Element;
 export interface SiteHeaderProps extends React.HTMLAttributes<HTMLElement> {
   /** Nav labels in order, e.g. ["Home","About","Products","Testimonials","Blog","Tutorials"]. */
   items?: string[];
-  /** Label of the current page — rendered accent with an underline. */
+  /** Label of the current page, rendered accent with an underline. */
   active?: string;
   onNavigate?: (label: string) => void;
   ctaLabel?: string;
@@ -265,7 +265,7 @@ export interface SectionHeadingProps extends React.HTMLAttributes<HTMLDivElement
   body?: string;
   align?: 'left' | 'center';
   onDark?: boolean;
-  /** Heading level 1–3. Default 2. */
+  /** Heading level 1 to 3. Default 2. */
   level?: 1 | 2 | 3;
 }
 
@@ -282,7 +282,7 @@ export interface StatTileProps extends React.HTMLAttributes<HTMLDivElement> {
 export declare function StatTile(props: StatTileProps): JSX.Element;
 
 export interface TestimonialProps extends React.HTMLAttributes<HTMLDivElement> {
-  /** Verbatim quote — never paraphrase or invent a testimonial. */
+  /** Verbatim quote. Never paraphrase or invent a testimonial. */
   quote?: string;
   name?: string;
   /** League President, Coach, Parent. */
@@ -310,7 +310,7 @@ export interface PlayerRowProps extends React.HTMLAttributes<HTMLDivElement> {
 export declare function PlayerRow(props: PlayerRowProps): JSX.Element;
 
 /**
- * The evaluation-score input coaches tap on the field — one tap per drill,
+ * The evaluation-score input coaches tap on the field: one tap per drill,
  * thumb-sized targets, accent marks the chosen score.
  * @startingPoint section="Evaluation" subtitle="Score scale, player row, tryout slot" viewport="700x300"
  */
@@ -331,7 +331,7 @@ export declare function ScoreScale(props: ScoreScaleProps): JSX.Element;
 export interface SlotCardProps extends React.HTMLAttributes<HTMLDivElement> {
   /** Human date, e.g. "Sat, Feb 21". */
   date?: string;
-  /** Time range, e.g. "9:00 – 9:45 AM". */
+  /** Time range, e.g. "9:00 to 9:45 AM". */
   time?: string;
   /** Field or facility name. */
   location?: string;
@@ -356,10 +356,10 @@ export interface ActionGroupProps extends React.HTMLAttributes<HTMLDivElement> {
 export declare function ActionGroup(props: ActionGroupProps): JSX.Element;
 
 /**
- * A labelled section: a muted uppercase eyebrow above one plain card.
+ * A labeled section: a muted uppercase eyebrow above one plain card.
  */
 export interface SectionCardProps extends React.HTMLAttributes<HTMLElement> {
-  /** Eyebrow text, set uppercase in a muted colour. Never accent. */
+  /** Eyebrow text, set uppercase in a muted color. Never accent. */
   label?: string;
   /** Set on black chrome: dark card, dark hairline, muted inverse label. */
   onDark?: boolean;

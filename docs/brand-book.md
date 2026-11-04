@@ -1,5 +1,5 @@
 Youth-sports software for leagues, coaches, parents and athletes. The through-line of the
-brand is **upgrade** — better versions of things leagues already do. Not disruption, not
+brand is **upgrade**: better versions of things leagues already do. Not disruption, not
 replacement.
 
 **Brand in one line:** black field, white mark, neon green trail, rocket rising through the **R**.
@@ -20,7 +20,7 @@ No product source code, Figma file or app screenshots were provided.
 | https://risegame.com/ and https://www.risegame.com/products | Verbatim marketing copy, testimonials, nav structure, product one-liners |
 | Referenced in the brief but **not supplied**: `/workspace/risegame-brand-guidelines.md` §5 (full voice), `/workspace/risegame-logos/from-site/risegame-logo.svg`, licensed font files | Gaps flagged below |
 
-**Scope:** RiseGame only. **GroundsPal is a separate mark** — do not mix it into RiseGame
+**Scope:** RiseGame only. **GroundsPal is a separate mark**; do not mix it into RiseGame
 chrome until a GroundsPal chapter exists.
 
 ## Products
@@ -32,7 +32,7 @@ chrome until a GroundsPal chapter exists.
 | Draft | Teams from evaluation scores | League Draft app |
 | Reports | Parent-readable evaluation breakdown | After tryouts |
 | Elevate | Year-round athlete tracking | App Store / Play |
-| GroundsPal | League ops — separate brand | https://groundspal.com |
+| GroundsPal | League ops, separate brand | https://groundspal.com |
 
 Connected flow for league admins: **Scheduler → Tryouts → Draft**, then Reports / Elevate as
 relevant. Never say "Core". Elevate is Elevate. Do not invent interconnection claims.
@@ -51,18 +51,18 @@ never salesy, never corporate.
 2. **Insider, not vendor.** "Our team comprises parents, coaches, and board members who have
    traveled the complex journey of youth athletics." The origin story belongs near the front of
    anything long-form.
-3. **Pain-point first, feature second.** Name the mess, then show the fix — the canonical example
+3. **Pain-point first, feature second.** Name the mess, then show the fix. The canonical example
    is the Scheduler line: *"Create time slots, share a link with parents, and let the system handle
-   the rest — no phone calls, no spreadsheets, no chaos."*
-4. **Transparency for parents.** The peek-behind-the-curtain angle — what do the coaches actually
-   think about my player — is distinctive and no competitor says it out loud.
+   the rest: no phone calls, no spreadsheets, no chaos."*
+4. **Transparency for parents.** The peek-behind-the-curtain angle (what do the coaches actually
+   think about my player?) is distinctive and no competitor says it out loud.
 5. **Two audiences, two registers.** Admins and coaches get efficiency and fairness. Parents and
    players get visibility and development. Same voice, different proof points.
 
 **Mechanics**
 
 - Short sentences. Active verbs. One idea per line. Em-dash bullets.
-- Tight beats thorough — when copy runs long, cut it.
+- Tight beats thorough: when copy runs long, cut it.
 - Headlines: short, present tense, product or job in the line. *"Simplify Your Tryouts With
   RiseGame."* *"Empower Youth Sports with RiseGame."*
 - Second person for the reader ("your league", "your athlete"); first-person plural for RiseGame
@@ -70,7 +70,7 @@ never salesy, never corporate.
 - **Title Case for marketing headlines** (as the live site does), sentence case for product-UI
   headings and labels, **UPPERCASE only** for nav, eyebrows, badges and tags.
 - Say **evaluation scores**, not bare "scores".
-- Name in type: **RiseGame** — one word, R and G capitalised.
+- Name in type: **RiseGame**, one word, R and G capitalized.
 - **No emoji.** Anywhere.
 - No urgency language or styling: no countdowns, no "LAST CHANCE", no red alarms.
 - No fabricated traction, testimonials or roadmap-as-live. Testimonials are verbatim from
@@ -79,7 +79,7 @@ never salesy, never corporate.
   video is https://risegame.com/tutorials/. App Store links only when the message is
   app-download specific.
 
-**Error and empty copy.** Explain, do not scold — "Add the name on the roster." Empty states name
+**Error and empty copy.** Explain, do not scold: "Add the name on the roster." Empty states name
 the mess and offer the fix, in the product's own voice.
 
 ---
@@ -91,31 +91,31 @@ accent doing all the work.
 
 **Color.** Black `#000000` field, ink `#161616` headlines on light, white `#FFFFFF` marks and
 surfaces, paper `#F2F2F2` chrome, mute `#666666` secondary text, and exactly one accent:
-`#1DFE1B`. The logo trail `#78F951` lives **inside the mark files only** — it is never a second
+`#1DFE1B`. The logo trail `#78F951` lives **inside the mark files only**; it is never a second
 button color. Retired / forbidden greens: HubSpot `#00FF03`, social `#7ED957`, site leftover
 `#3EC96B`. Dark chrome adds `#0B0B0B` / `#161616` / `#242424` surfaces, `#2E2E2E` lines and
 `#9A9A9A` muted type. Both chromes are legal: black with white type and neon accents, or white /
 `#F2F2F2` with `#161616` type and neon buttons.
 
-**Type.** Barlow Condensed 700 for every headline (line-height 1.02–1.08, no extra tracking);
-Roboto for body, UI and buttons — 400 body, 500 links and buttons, 700 for nav, eyebrows, badges
+**Type.** Barlow Condensed 700 for every headline (line-height 1.02 to 1.08, no extra tracking);
+Roboto for body, UI and buttons: 400 body, 500 links and buttons, 700 for nav, eyebrows, badges
 and tags at 12px uppercase with 0.1em tracking. Two families, never a third. Fallbacks: Arial,
 then system sans.
 
 **Spacing and layout.** 4px base scale (4 → 128). Content max 1200px, prose max 720px. Marketing
 sections run 96px vertical (48px tight); product UI works on 16 / 24px gutters. Controls are 32 /
 40 / 48px tall; app rows and tab bars never go below the 44px tap minimum. Layout is a plain
-top-to-bottom stack of full-width bands — dark band, light band, dark band — with the header fixed
+top-to-bottom stack of full-width bands (dark band, light band, dark band) with the header fixed
 in the marketing chrome and app tab bars pinned to the bottom. No sticky sidebars, no floating
 action buttons.
 
-**Corner radii.** 2px on web buttons (that is what the site ships). 2–8px across new product UI:
+**Corner radii.** 2px on web buttons (that is what the site ships). 2 to 8px across new product UI:
 2px buttons and badges, 4px inputs and score tiles, 8px cards. Full radius is reserved for radio
 dots, avatars and score chips. 15px exists only in legacy HubSpot email templates. Nothing is
 pill-heavy unless asked.
 
 **Cards.** White (or `#161616` on dark), 1px hairline border `#E2E2E2` (`#2E2E2E` on dark), 8px
-radius, and a whisper of shadow — `0 1px 2px rgba(0,0,0,.06)`. Flat, not floating. Interactive
+radius, and a whisper of shadow: `0 1px 2px rgba(0,0,0,.06)`. Flat, not floating. Interactive
 cards raise to `0 2px 8px rgba(0,0,0,.10)` and swap the border to ink (accent on dark). **No
 colored left-border accents. No gradient fills. No skeuomorphism.**
 
@@ -123,11 +123,11 @@ colored left-border accents. No gradient fills. No skeuomorphism.**
 (`0 8px 24px rgba(0,0,0,.18)` for modals). Inner shadows are used only as hairline dividers.
 
 **Backgrounds.** Solid fills. The only gradient in the whole system is the legibility scrim under
-type on photography (`--scrim-bottom`, black 0 → 85%) — protection, never decoration. No
+type on photography (`--scrim-bottom`, black 0 to 85%), protection, never decoration. No
 repeating patterns, no textures, no hand-drawn illustration, no bluish-purple anything.
 
-**Imagery.** Real youth sports and real leagues — parents on the sideline, kids on the field.
-Natural daylight, warm-neutral, un-stylised; no heavy grade, no grain, no duotone. Sport lives in
+**Imagery.** Real youth sports and real leagues: parents on the sideline, kids on the field.
+Natural daylight, warm-neutral, unstylized; no heavy grade, no grain, no duotone. Sport lives in
 the photo, not in unique copy per sport. The brand pack shipped no photography, so kits use
 labeled placeholder blocks (`docs/ui-kits/marketing-site/Photo.jsx`); swap in real photos before use.
 
@@ -136,7 +136,7 @@ the photo scrim. There is no frosted glass and no backdrop blur.
 
 **Animation.** Calm and short: 120ms press, 180ms hover and color swaps, 280ms bars and reveals,
 all on `cubic-bezier(.2,0,.2,1)`. Fades and color transitions only. Nothing bounces, springs or
-overshoots — the rocket rises, it does not wobble.
+overshoots; the rocket rises, it does not wobble.
 
 **Hover states.** The primary button inverts: neon fill → `#242424` fill with a white label.
 Outline buttons fill with ink (white on dark). Ghost buttons go accent. Nav links go accent and
@@ -146,7 +146,7 @@ their border. Never opacity-fade a control on hover.
 **Press states.** 1px downward nudge (`translateY(1px)`), no shrink, no color change beyond the
 hover state.
 
-**Focus.** 2px accent outline at 2px offset — the accent is the focus color everywhere.
+**Focus.** 2px accent outline at 2px offset; the accent is the focus color everywhere.
 
 **Selected states.** Accent, but never as a wash: a 2px accent border on a slot card, an accent
 fill on the one chosen score, an accent underline on the active tab.
@@ -187,7 +187,7 @@ The Tracker home redesign (Nov 2026) is the worked example of these rules, in ph
 
 ## ICONOGRAPHY
 
-**The brand pack contains no icon set** — no icon font, no SVG sprite, no PNG glyphs. The one
+**The brand pack contains no icon set**: no icon font, no SVG sprite, no PNG glyphs. The one
 piece of proprietary iconography is the rocket / **R** mark itself, which is used as an app icon,
 favicon, avatar and small-chrome glyph (`assets/logos/rocket-*.png`, `assets/logos/risegame-r-*.png`). The
 live site does the same thing: testimonials use the R mark where an avatar would go.
@@ -195,7 +195,7 @@ live site does the same thing: testimonials use the R mark where an avatar would
 **Substitution (flagged):** UI icons use **Lucide**, loaded from CDN via `lucide-static` and
 masked so glyphs inherit `currentColor` (see `src/components/core/Icon.jsx`). Lucide was chosen for
 its thin, geometric, uniform-stroke outlines, which sit closest to the flat / minimal / tech
-direction in the brief. **This is a substitution, not a brand decision** — if RiseGame has a real
+direction in the brief. **This is a substitution, not a brand decision**. If RiseGame has a real
 icon set, replace `Icon.jsx`'s base URL (and run `npm run build`) and the whole system follows.
 
 Rules:
@@ -203,7 +203,7 @@ Rules:
 - Outline glyphs only, one weight, no filled variants, never two icon sets on one screen.
 - Icons are ink or white by default; accent only when the icon *is* the accent moment (a product
   tile glyph, a confirmation tick).
-- 16px inside small controls, 18–22px in rows and buttons, 26–28px for product tiles and empty
+- 16px inside small controls, 18 to 22px in rows and buttons, 26 to 28px for product tiles and empty
   states.
 - **No emoji as icons. No unicode dingbats.** Arrows are the Lucide `chevron-*` / `arrow-*`
   glyphs, not `→` or `»`.
@@ -214,10 +214,10 @@ Rules:
 
 ---
 
-## Font substitution — needs your input
+## Font substitution: needs your input
 
 No licensed font binaries came with the pack, so `src/styles/base.css` loads **Barlow Condensed** and
-**Roboto** from Google Fonts — the same families the live site uses, so this is a hosting
+**Roboto** from Google Fonts, the same families the live site uses, so this is a hosting
 substitution rather than a typeface substitution. If you can supply hosted files, drop them in
 `fonts/`, list them in `tokens/tokens.json` `type.fonts`, and remove the `@import` at the top of `src/styles/base.css`. This is one of the open gaps
 already listed in `docs/sources/design.md`.
@@ -247,12 +247,12 @@ Where they disagree with this book, this book wins. Their green eyebrows set int
 
 **Components** (each with usage rules in `docs/components/` and types in `src/index.d.ts`)
 
-- Core — **Button**, **IconButton**, **Icon**, **Badge**, **Tag**, **Card**, **Logo**
-- Forms — **Field**, **Input**, **Select**, **Checkbox**, **Radio**, **Switch**
-- Navigation — **SiteHeader**, **Tabs**, **AppTabBar**
-- Feedback — **Dialog**, **Toast**, **EmptyState**, **ProgressBar**
-- Patterns — **SectionHeading**, **ProductTile**, **Testimonial**, **StatTile**, **ActionGroup**, **SectionCard**, **ToolList**, **ToolRow**
-- Evaluation — **ScoreScale**, **PlayerRow**, **SlotCard**
+- Core: **Button**, **IconButton**, **Icon**, **Badge**, **Tag**, **Card**, **Logo**
+- Forms: **Field**, **Input**, **Select**, **Checkbox**, **Radio**, **Switch**
+- Navigation: **SiteHeader**, **Tabs**, **AppTabBar**
+- Feedback: **Dialog**, **Toast**, **EmptyState**, **ProgressBar**
+- Patterns: **SectionHeading**, **ProductTile**, **Testimonial**, **StatTile**, **ActionGroup**, **SectionCard**, **ToolList**, **ToolRow**
+- Evaluation: **ScoreScale**, **PlayerRow**, **SlotCard**
 
 **Intentional additions.** No component library was supplied, so the primitives above are a
 standard set sized to RiseGame's surfaces. Four entries go beyond a generic set and exist for a
@@ -264,12 +264,12 @@ match.
 
 **UI kits** (`docs/ui-kits/<product>/`, each with its own `README.md` and `index.html`)
 
-- `marketing-site/` — risegame.com Home and Products, verbatim copy.
-- `tryout-scheduler/` — league-admin slot manager + the four-step parent signup flow.
-- `tryouts-app/` — coach roster and on-field evaluation scoring, in an iOS frame.
-- `draft-and-reports/` — live draft board and the parent-readable player report.
+- `marketing-site/`: risegame.com Home and Products, verbatim copy.
+- `tryout-scheduler/`: league-admin slot manager + the four-step parent signup flow.
+- `tryouts-app/`: coach roster and on-field evaluation scoring, in an iOS frame.
+- `draft-and-reports/`: live draft board and the parent-readable player report.
 - `elevate/`: Elevate athlete, coach and family screens (see `docs/handoff/elevate-redesign.md`).
 
 **Kit caveat.** Only the marketing site could be checked against a real source. The product
-kits are built from locked copy, product jobs and these foundations — the *styling* is ground
+kits are built from locked copy, product jobs and these foundations. The *styling* is ground
 truth, the *screen structure* is a proposal to verify against the shipped products.

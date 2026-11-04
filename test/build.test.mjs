@@ -70,3 +70,19 @@ test('no British spellings in docs', () => {
   }
   assert.deepEqual(hits, []);
 });
+
+test('no em or en dashes in docs', () => {
+  const docs = walk(path.join(root, 'docs'), (f) => {
+    const rel = path.relative(path.join(root, 'docs'), f);
+    return /\.(md|html|jsx|js)$/.test(f) && !rel.startsWith('sources' + path.sep) && !rel.startsWith('superpowers' + path.sep) && rel !== path.join('ui-kits', 'ds-bundle.js');
+  });
+  const files = ['README.md', 'SKILL.md', 'CHANGELOG.md'].map((f) => path.join(root, f)).concat(docs);
+  const re = /[\u2013\u2014]/;
+  const hits = [];
+  for (const file of files) {
+    fs.readFileSync(file, 'utf8').split('\n').forEach((line, i) => {
+      if (re.test(line)) hits.push(`${path.relative(root, file)}:${i + 1}`);
+    });
+  }
+  assert.deepEqual(hits, []);
+});

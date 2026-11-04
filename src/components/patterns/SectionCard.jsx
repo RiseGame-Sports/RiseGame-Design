@@ -1,6 +1,6 @@
 import React from 'react';
 
-// A labelled section: a muted uppercase eyebrow above one plain card.
+// A labeled section: a muted uppercase eyebrow above one plain card.
 // No dashed boxes, no accent borders, no label set into the border line.
 export function SectionCard({ label, children, onDark = false, padding = '0', style, cardStyle, ...rest }) {
   return (
