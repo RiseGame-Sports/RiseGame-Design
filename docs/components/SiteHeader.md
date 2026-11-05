@@ -2,6 +2,8 @@
 
 Marketing-site header for risegame.com pages.
 
+    import { SiteHeader } from '@risegame/design-system/marketing';
+
     <SiteHeader items={['Home','About','Products','Blog']} active="Products" assetBase="../../assets/logos/" />
 
 Notes

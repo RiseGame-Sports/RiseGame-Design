@@ -245,7 +245,7 @@ Where they disagree with this book, this book wins. Their green eyebrows set int
 
 **Assets**: `assets/logos/` (wordmarks, stacked lockups, R marks, rockets, black and white ink) and `assets/qr/`. Source material lives in `docs/sources/`: the logo pack masters (including the retired circular R), the pre-redesign Tracker screenshots and a risegame.com screenshot.
 
-**Components** (each with usage rules in `docs/components/` and types in `src/index.d.ts`)
+**Components** (each with usage rules in `docs/components/` and types in `src/index.d.ts`, `src/logo.d.ts` and `src/marketing.d.ts`)
 
 - Core: **Button**, **IconButton**, **Icon**, **Badge**, **Tag**, **Card**, **Logo**
 - Forms: **Field**, **Input**, **Select**, **Checkbox**, **Radio**, **Switch**

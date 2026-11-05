@@ -1,4 +1,4 @@
-// Builds docs/ui-kits/ds-bundle.js: every export of src/index.js as one browser
+// Builds docs/ui-kits/ds-bundle.js: every export of src/index.js, src/logo.js and src/marketing.js as one browser
 // script that sets window.RiseGameDesignSystem_66bdc7. The UI kit pages load React
 // from a CDN first, so react and react-dom resolve to window.React and window.ReactDOM.
 // Called at the end of scripts/build.mjs. The output is gitignored.
@@ -35,7 +35,13 @@ const jsToJsx = {
 };
 
 await esbuild.build({
-  entryPoints: [path.join(root, 'src/index.js')],
+  // The kit pages need every component, including the ones that live behind the
+  // logo and marketing subpaths, so bundle all three entry files together.
+  stdin: {
+    contents: "export * from './index.js'; export * from './logo.js'; export * from './marketing.js';",
+    resolveDir: path.join(root, 'src'),
+    loader: 'js',
+  },
   outfile: path.join(root, 'docs/ui-kits/ds-bundle.js'),
   bundle: true,
   format: 'iife',

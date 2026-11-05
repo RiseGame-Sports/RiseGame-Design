@@ -10,3 +10,4 @@ Notes
 - secondary / ghost take onDark on black chrome.
 - Radius is 2px everywhere. No shadows or gradients on buttons.
 - League-admin CTAs point at mailto:info@risegame.com or a product URL, not the App Store.
+- Hover colors apply only where the device has hover (`(hover: hover)`). A tap on a phone leaves the resting colors.

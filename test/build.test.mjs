@@ -2,7 +2,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import path from 'node:path';
-import { fileURLToPath } from 'node:url';
+import { fileURLToPath, pathToFileURL } from 'node:url';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 
@@ -35,14 +35,49 @@ test('every new URL() asset in dist resolves', () => {
   assert.deepEqual(missing, []);
 });
 
+test('the barrel reaches no new URL()', () => {
+  const seen = new Set();
+  const stack = [path.join(root, 'dist/index.js')];
+  while (stack.length) {
+    const file = stack.pop();
+    if (seen.has(file)) continue;
+    seen.add(file);
+    const src = fs.readFileSync(file, 'utf8');
+    for (const m of src.matchAll(/(?:^|\n)\s*(?:import|export)\s[^'"]*?from\s*['"](\.[^'"]+)['"]/g)) {
+      stack.push(path.resolve(path.dirname(file), m[1]));
+    }
+    for (const m of src.matchAll(/(?:^|\n)\s*import\s*['"](\.[^'"]+)['"]/g)) {
+      stack.push(path.resolve(path.dirname(file), m[1]));
+    }
+  }
+  assert.ok(seen.size > 20, `expected to follow 20+ files, followed ${seen.size}`);
+  const hits = [...seen].filter((f) => fs.readFileSync(f, 'utf8').includes('new URL('));
+  assert.deepEqual(hits.map((f) => path.relative(root, f)), []);
+});
+
+test('logo and marketing subpaths resolve', async () => {
+  const pkg = JSON.parse(fs.readFileSync(path.join(root, 'package.json'), 'utf8'));
+  const want = { './logo': ['Logo'], './marketing': ['SiteHeader', 'Testimonial'] };
+  for (const [key, names] of Object.entries(want)) {
+    const entry = pkg.exports[key];
+    assert.ok(entry, `exports[${key}] is missing`);
+    assert.ok(entry.types && entry.import, `exports[${key}] needs types and import`);
+    const file = path.resolve(root, entry.import);
+    assert.ok(fs.existsSync(file), `${entry.import} does not exist`);
+    assert.ok(fs.existsSync(path.resolve(root, entry.types)), `${entry.types} does not exist`);
+    const mod = await import(pathToFileURL(file).href);
+    for (const n of names) assert.equal(typeof mod[n], 'function', `${key} does not export ${n}`);
+  }
+});
+
 test('index exports every component', () => {
   const readme = fs.readFileSync(path.join(root, 'README.md'), 'utf8');
   const row = readme.split('\n').find((l) => l.startsWith('| `@risegame/design-system` |'));
   assert.ok(row, 'README import table row not found');
-  const list = row.match(/All components: (.*?)\. Types included/);
+  const list = row.match(/next two rows\): (.*?)\. Types included/);
   assert.ok(list, 'README component list not found');
   const expected = list[1].split(',').map((s) => s.trim()).sort();
-  assert.equal(expected.length, 31);
+  assert.equal(expected.length, 28);
 
   const indexJs = fs.readFileSync(path.join(root, 'dist/index.js'), 'utf8');
   const exported = [];

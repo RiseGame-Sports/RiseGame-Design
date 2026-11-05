@@ -48,7 +48,9 @@ Put `className="rg-dark"` (or a black background) on dark screens and pass `onDa
 
 | Import | What you get |
 |---|---|
-| `@risegame/design-system` | All components: Button, IconButton, Icon, Badge, Tag, Card, Logo, Field, Input, Select, Checkbox, Radio, Switch, SiteHeader, Tabs, AppTabBar, Dialog, Toast, EmptyState, ProgressBar, SectionHeading, ProductTile, Testimonial, StatTile, ActionGroup, SectionCard, ToolList, ToolRow, ScoreScale, PlayerRow, SlotCard. Types included. |
+| `@risegame/design-system` | All components except Logo, SiteHeader and Testimonial (see the next two rows): Button, IconButton, Icon, Badge, Tag, Card, Field, Input, Select, Checkbox, Radio, Switch, Tabs, AppTabBar, Dialog, Toast, EmptyState, ProgressBar, SectionHeading, ProductTile, StatTile, ActionGroup, SectionCard, ToolList, ToolRow, ScoreScale, PlayerRow, SlotCard. Types included. |
+| `@risegame/design-system/logo` | `Logo`. |
+| `@risegame/design-system/marketing` | `SiteHeader` and `Testimonial`. |
 | `@risegame/design-system/styles.css` | Tokens plus base styles: fonts, resets, `.rg-eyebrow`, `.rg-dark`. |
 | `@risegame/design-system/tokens.css` | Just the CSS custom properties (`--rg-accent`, `--space-4`, ...). |
 | `@risegame/design-system/tokens` | Tokens as JS: `tokens` (the full object) and `cssVars` (a flat name to value map). |
@@ -71,7 +73,7 @@ The kit pages load `docs/ui-kits/ds-bundle.js`, which `npm run build` generates 
 
 ## Logos
 
-`Logo`, `SiteHeader` and `Testimonial` load the marks bundled in `assets/logos` through `new URL(..., import.meta.url)`, which Vite, webpack 5, Next.js and Parcel handle automatically. To serve them from your own folder or a CDN, pass `assetBase="/brand/"`.
+`Logo`, `SiteHeader` and `Testimonial` load the marks bundled in `assets/logos` through `new URL(..., import.meta.url)`, which Vite, webpack 5, Next.js and Parcel handle automatically. Import them from `@risegame/design-system/logo` (`Logo`) and `@risegame/design-system/marketing` (`SiteHeader`, `Testimonial`). Importing the main entry no longer emits the eight logo PNGs; an app gets them only when it imports `@risegame/design-system/logo`. To serve them from your own folder or a CDN, pass `assetBase="/brand/"`.
 
 ## Fonts and icons
 

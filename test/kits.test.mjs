@@ -18,10 +18,12 @@ function walk(dir, filter, out = []) {
 }
 
 function exportNames() {
-  const indexJs = fs.readFileSync(path.join(root, 'src/index.js'), 'utf8');
   const names = [];
-  for (const m of indexJs.matchAll(/^export\s*\{([^}]*)\}/gm)) {
-    for (const name of m[1].split(',')) if (name.trim()) names.push(name.trim());
+  for (const file of ['index.js', 'logo.js', 'marketing.js']) {
+    const js = fs.readFileSync(path.join(root, 'src', file), 'utf8');
+    for (const m of js.matchAll(/^export\s*\{([^}]*)\}/gm)) {
+      for (const name of m[1].split(',')) if (name.trim()) names.push(name.trim());
+    }
   }
   return names.filter((n) => !NON_COMPONENT_EXPORTS.includes(n));
 }
