@@ -5,6 +5,7 @@ export function AppTabBar({
   items = [],
   value,
   onChange,
+  compact = false,
   style,
   ...rest
 }) {
@@ -19,26 +20,28 @@ export function AppTabBar({
     }
   }, rest), items.map(item => {
     const on = value === item.value;
-    return /*#__PURE__*/React.createElement("button", {
-      key: item.value,
+    return /*#__PURE__*/React.createElement("button", _extends({
+      key: item.value
+    }, item.buttonProps, {
       type: "button",
       "aria-current": on ? 'page' : undefined,
       onClick: () => onChange && onChange(item.value),
       style: {
         position: 'relative',
         display: 'flex',
-        flexDirection: 'column',
+        flexDirection: compact ? 'row' : 'column',
         alignItems: 'center',
-        gap: 4,
-        minHeight: 56,
-        padding: '10px 0 var(--space-2)',
+        justifyContent: compact ? 'center' : undefined,
+        gap: compact ? 6 : 4,
+        minHeight: compact ? 44 : 56,
+        padding: compact ? '0 var(--space-2)' : '10px 0 var(--space-2)',
         background: 'none',
         border: 0,
         cursor: 'pointer',
         color: on ? 'var(--rg-white)' : 'var(--rg-dark-mute)',
         transition: 'var(--transition-control)'
       }
-    }, /*#__PURE__*/React.createElement("span", {
+    }), /*#__PURE__*/React.createElement("span", {
       "aria-hidden": "true",
       style: {
         position: 'absolute',
@@ -59,6 +62,6 @@ export function AppTabBar({
         letterSpacing: 'var(--tracking-eyebrow)',
         textTransform: 'uppercase'
       }
-    }, item.label));
+    }, item.lines ? /*#__PURE__*/React.createElement(React.Fragment, null, item.lines[0], /*#__PURE__*/React.createElement("br", null), item.lines[1]) : item.label));
   }));
 }

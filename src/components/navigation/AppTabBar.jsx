@@ -1,7 +1,7 @@
 import React from 'react';
 import { Icon } from '../core/Icon.jsx';
 
-export function AppTabBar({ items = [], value, onChange, style, ...rest }) {
+export function AppTabBar({ items = [], value, onChange, compact = false, style, ...rest }) {
   return (
     <nav style={{
       display: 'grid', gridTemplateColumns: 'repeat(' + Math.max(items.length, 1) + ',1fr)',
@@ -11,12 +11,13 @@ export function AppTabBar({ items = [], value, onChange, style, ...rest }) {
       {items.map((item) => {
         const on = value === item.value;
         return (
-          <button key={item.value} type="button" aria-current={on ? 'page' : undefined}
+          <button key={item.value} {...item.buttonProps} type="button" aria-current={on ? 'page' : undefined}
             onClick={() => onChange && onChange(item.value)}
             style={{
               position: 'relative',
-              display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 4,
-              minHeight: 56, padding: '10px 0 var(--space-2)',
+              display: 'flex', flexDirection: compact ? 'row' : 'column', alignItems: 'center',
+              justifyContent: compact ? 'center' : undefined, gap: compact ? 6 : 4,
+              minHeight: compact ? 44 : 56, padding: compact ? '0 var(--space-2)' : '10px 0 var(--space-2)',
               background: 'none', border: 0, cursor: 'pointer',
               color: on ? 'var(--rg-white)' : 'var(--rg-dark-mute)',
               transition: 'var(--transition-control)',
@@ -29,7 +30,7 @@ export function AppTabBar({ items = [], value, onChange, style, ...rest }) {
             <span style={{
               fontFamily: 'var(--font-body)', fontSize: 10, fontWeight: 'var(--weight-bold)',
               letterSpacing: 'var(--tracking-eyebrow)', textTransform: 'uppercase',
-            }}>{item.label}</span>
+            }}>{item.lines ? <>{item.lines[0]}<br />{item.lines[1]}</> : item.label}</span>
           </button>
         );
       })}

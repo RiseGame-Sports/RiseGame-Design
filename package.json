@@ -1,6 +1,6 @@
 {
   "name": "@risegame/design-system",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "RiseGame design system: tokens, base styles, brand marks and React components.",
   "private": true,
   "type": "module",
@@ -11,6 +11,14 @@
     ".": {
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js"
+    },
+    "./logo": {
+      "types": "./dist/logo.d.ts",
+      "import": "./dist/logo.js"
+    },
+    "./marketing": {
+      "types": "./dist/marketing.d.ts",
+      "import": "./dist/marketing.js"
     },
     "./styles.css": "./dist/styles/index.css",
     "./tokens.css": "./dist/styles/tokens.css",

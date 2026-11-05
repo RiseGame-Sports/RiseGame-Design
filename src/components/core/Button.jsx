@@ -1,5 +1,6 @@
 import React from 'react';
 import { Icon } from './Icon.jsx';
+import { shouldHover } from './hover.js';
 
 const SIZES = {
   sm: { height: 'var(--control-h-sm)', padding: '0 var(--space-3)', font: 'var(--size-body-sm)', icon: 16 },
@@ -41,7 +42,7 @@ export function Button({ children, variant = 'primary', size = 'md', iconLeft, i
     <Tag
       href={href}
       disabled={Tag === 'button' ? disabled : undefined}
-      onMouseEnter={() => setHover(true)}
+      onMouseEnter={() => { if (shouldHover()) setHover(true); }}
       onMouseLeave={() => { setHover(false); setDown(false); }}
       onMouseDown={() => setDown(true)}
       onMouseUp={() => setDown(false)}

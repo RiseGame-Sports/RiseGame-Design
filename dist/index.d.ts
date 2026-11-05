@@ -81,22 +81,6 @@ export interface IconButtonProps extends React.ButtonHTMLAttributes<HTMLButtonEl
 
 export declare function IconButton(props: IconButtonProps): JSX.Element;
 
-/**
- * The RiseGame mark. Never redraw it: this component points at the supplied
- * PNGs in assets/. Rocket always points up; the trail stays neon green.
- */
-export interface LogoProps extends React.ImgHTMLAttributes<HTMLImageElement> {
-  /** wordmark = full RISEGAME lockup; stacked = R over wordmark; r = R lockup; rocket = rocket + trail only. */
-  variant?: 'wordmark' | 'stacked' | 'r' | 'rocket';
-  /** Use the white-on-transparent file. */
-  onDark?: boolean;
-  /** Rendered height in px; width follows the mark's ratio. */
-  height?: number;
-  /** Folder or CDN URL that holds the logo PNGs. Omit to use the copies bundled in the package. */
-  assetBase?: string;
-}
-
-export declare function Logo(props: LogoProps): JSX.Element;
 
 export interface TagProps extends React.HTMLAttributes<HTMLSpanElement> {
   /** Renders a remove affordance when provided. */
@@ -165,34 +149,26 @@ export interface SwitchProps extends Omit<React.InputHTMLAttributes<HTMLInputEle
 
 export declare function Switch(props: SwitchProps): JSX.Element;
 
-export interface AppTabBarItem { value: string; label: string; icon: string }
+export interface AppTabBarItem {
+  value: string;
+  label: string;
+  icon: string;
+  /** Label split over two lines, e.g. ['Players &', 'Teams']. Rendered with a line break between. */
+  lines?: [string, string];
+  /** Spread onto this tab's button before the component's own type, onClick and aria-current. */
+  buttonProps?: React.ButtonHTMLAttributes<HTMLButtonElement> & Record<`data-${string}`, string>;
+}
 
 export interface AppTabBarProps extends React.HTMLAttributes<HTMLElement> {
   items?: AppTabBarItem[];
   value?: string;
   onChange?: (value: string) => void;
+  /** Icon beside the label in a 44px row, for toolbars that need less height. */
+  compact?: boolean;
 }
 
 export declare function AppTabBar(props: AppTabBarProps): JSX.Element;
 
-/**
- * The risegame.com header: black bar, white wordmark, uppercase Roboto 700 nav,
- * outline CTA on the right.
- * @startingPoint section="Navigation" subtitle="Marketing site header, tabs and app tab bar" viewport="700x300"
- */
-export interface SiteHeaderProps extends React.HTMLAttributes<HTMLElement> {
-  /** Nav labels in order, e.g. ["Home","About","Products","Testimonials","Blog","Tutorials"]. */
-  items?: string[];
-  /** Label of the current page, rendered accent with an underline. */
-  active?: string;
-  onNavigate?: (label: string) => void;
-  ctaLabel?: string;
-  ctaHref?: string;
-  /** Folder or CDN URL that holds the logo PNGs. Omit to use the copies bundled in the package. */
-  assetBase?: string;
-}
-
-export declare function SiteHeader(props: SiteHeaderProps): JSX.Element;
 
 export interface TabItem { value: string; label: string }
 
@@ -296,18 +272,6 @@ export interface StatTileProps extends React.HTMLAttributes<HTMLDivElement> {
 
 export declare function StatTile(props: StatTileProps): JSX.Element;
 
-export interface TestimonialProps extends React.HTMLAttributes<HTMLDivElement> {
-  /** Verbatim quote. Never paraphrase or invent a testimonial. */
-  quote?: string;
-  name?: string;
-  /** League President, Coach, Parent. */
-  role?: string;
-  location?: string;
-  tone?: 'light' | 'alt' | 'dark';
-  assetBase?: string;
-}
-
-export declare function Testimonial(props: TestimonialProps): JSX.Element;
 
 export interface PlayerRowProps extends React.HTMLAttributes<HTMLDivElement> {
   /** Jersey or tryout number. */

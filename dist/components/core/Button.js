@@ -1,6 +1,7 @@
 function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
 import React from 'react';
 import { Icon } from './Icon.js';
+import { shouldHover } from './hover.js';
 const SIZES = {
   sm: {
     height: 'var(--control-h-sm)',
@@ -93,7 +94,9 @@ export function Button({
   return /*#__PURE__*/React.createElement(Tag, _extends({
     href: href,
     disabled: Tag === 'button' ? disabled : undefined,
-    onMouseEnter: () => setHover(true),
+    onMouseEnter: () => {
+      if (shouldHover()) setHover(true);
+    },
     onMouseLeave: () => {
       setHover(false);
       setDown(false);

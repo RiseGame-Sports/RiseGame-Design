@@ -1,5 +1,6 @@
 import React from 'react';
 import { Icon } from './Icon.jsx';
+import { shouldHover } from './hover.js';
 
 const BOX = { sm: 32, md: 40, lg: 48 };
 
@@ -15,7 +16,7 @@ export function IconButton({ icon, label, variant = 'ghost', size = 'md', onDark
   return (
     <button
       aria-label={label} title={label} disabled={disabled}
-      onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)}
+      onMouseEnter={() => { if (shouldHover()) setHover(true); }} onMouseLeave={() => setHover(false)}
       style={{
         display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
         width: box, height: box, borderRadius: 'var(--radius-sm)',

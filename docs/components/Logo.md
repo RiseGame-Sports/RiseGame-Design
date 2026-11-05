@@ -2,6 +2,8 @@
 
 Renders a supplied RiseGame mark at a fixed height. It is the only correct way to place the logo.
 
+    import { Logo } from '@risegame/design-system/logo';
+
     <Logo variant="wordmark" onDark height={28} assetBase="../../assets/logos/" />
     <Logo variant="rocket" height={40} />
 
