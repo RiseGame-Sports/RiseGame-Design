@@ -54,12 +54,67 @@ test('shouldHover follows the pointer', async () => {
   }
 });
 
-test('Button and IconButton ask shouldHover', () => {
-  for (const name of ['Button', 'IconButton']) {
-    const src = fs.readFileSync(path.join(root, 'dist/components/core', name + '.js'), 'utf8');
-    assert.match(src, /from ['"]\.\/hover\.js['"]/, `${name} does not import hover.js`);
-    const m = src.match(/onMouseEnter:\s*\(\)\s*=>\s*\{?([^}]*?)\}?,\s*\n?\s*onMouseLeave/s) || src.match(/onMouseEnter:([^\n]*)/);
-    assert.ok(m, `${name} has no onMouseEnter`);
-    assert.match(m[1], /shouldHover\(\)/, `${name} onMouseEnter does not call shouldHover`);
+test('AppTabBar gives a lines item its label as the accessible name', () => {
+  const html = renderToStaticMarkup(
+    createElement(AppTabBar, { items: [{ value: 'p', label: 'Players and Teams', icon: 'users', lines: ['Players &', 'Teams'] }] })
+  );
+  assert.match(html, /<button[^>]*aria-label="Players and Teams"/);
+});
+
+test('AppTabBar buttonProps lose to type, onClick and aria-current', async () => {
+  const theirs = () => {};
+  const html = renderToStaticMarkup(
+    createElement(AppTabBar, {
+      value: 'a',
+      items: [{ value: 'a', label: 'A', icon: 'house', buttonProps: { type: 'submit', onClick: theirs, 'aria-current': 'x' } }],
+    })
+  );
+  const button = html.match(/<button[^>]*>/)[0];
+  assert.match(button, /type="button"/);
+  assert.doesNotMatch(button, /type="submit"/);
+  assert.match(button, /aria-current="page"/);
+  assert.doesNotMatch(button, /aria-current="x"/);
+  // onClick is not in markup; check the handler on a rendered tree.
+  const TestRenderer = (await import('react-test-renderer')).default;
+  let value;
+  let r;
+  TestRenderer.act(() => {
+    r = TestRenderer.create(
+      createElement(AppTabBar, { onChange: (v) => { value = v; }, items: [{ value: 'a', label: 'A', icon: 'house', buttonProps: { onClick: theirs } }] })
+    );
+  });
+  r.root.findByType('button').props.onClick();
+  assert.equal(value, 'a');
+});
+
+test('Button and IconButton show hover colors only where hover exists', async () => {
+  const TestRenderer = (await import('react-test-renderer')).default;
+  const { Button } = await import(dist('components/core/Button.js'));
+  const { IconButton } = await import(dist('components/core/IconButton.js'));
+  const saved = globalThis.matchMedia;
+  globalThis.IS_REACT_ACT_ENVIRONMENT = true;
+  try {
+    const cases = [
+      ['Button', () => createElement(Button, { variant: 'primary' }, 'Go'), 'background'],
+      ['IconButton', () => createElement(IconButton, { icon: 'plus', label: 'Add', variant: 'accent' }), 'background'],
+    ];
+    for (const [name, make, prop] of cases) {
+      const bg = (matches) => {
+        globalThis.matchMedia = () => ({ matches });
+        let r;
+        TestRenderer.act(() => { r = TestRenderer.create(make()); });
+        const rest = r.root.findByType(name === 'Button' ? 'button' : 'button').props.style[prop];
+        TestRenderer.act(() => { r.root.findByType('button').props.onMouseEnter(); });
+        const after = r.root.findByType('button').props.style[prop];
+        return [rest, after];
+      };
+      const [restA, afterA] = bg(false);
+      assert.equal(afterA, restA, `${name} changed on mouseenter without hover`);
+      const [restB, afterB] = bg(true);
+      assert.notEqual(afterB, restB, `${name} did not change on mouseenter with hover`);
+    }
+  } finally {
+    if (saved) globalThis.matchMedia = saved;
+    else delete globalThis.matchMedia;
   }
 });

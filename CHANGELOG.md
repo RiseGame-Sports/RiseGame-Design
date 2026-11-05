@@ -2,7 +2,7 @@
 
 ## 0.2.0
 
-- `Logo` moves to `@risegame/design-system/logo`; `SiteHeader` and `Testimonial` move to `@risegame/design-system/marketing`. The main entry no longer reaches any `new URL(..., import.meta.url)`, so apps that do not draw the mark need no asset handling. Breaking for imports of those three from the main entry.
+- `Logo` moves to `@risegame/design-system/logo`; `SiteHeader` and `Testimonial` move to `@risegame/design-system/marketing`. Importing the main entry no longer emits the eight logo PNGs; an app gets them only when it imports `@risegame/design-system/logo`. Breaking for imports of those three from the main entry.
 - `AppTabBar`: items take `lines` (a two-line label) and `buttonProps` (spread onto the tab's button); the bar takes `compact` (icon beside the label, 44px row, 6px gap).
 - `Button` and `IconButton` apply hover colors only where the device has hover, through the new internal `shouldHover()`. A tap on a phone no longer sticks the hover state.
 

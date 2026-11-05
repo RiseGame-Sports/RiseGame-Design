@@ -11,7 +11,7 @@ export function AppTabBar({ items = [], value, onChange, compact = false, style,
       {items.map((item) => {
         const on = value === item.value;
         return (
-          <button key={item.value} {...item.buttonProps} type="button" aria-current={on ? 'page' : undefined}
+          <button key={item.value} aria-label={item.lines ? item.label : undefined} {...item.buttonProps} type="button" aria-current={on ? 'page' : undefined}
             onClick={() => onChange && onChange(item.value)}
             style={{
               position: 'relative',

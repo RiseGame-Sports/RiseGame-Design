@@ -201,7 +201,7 @@ Spacing stays on Tailwind's default 4px scale (no override).
 - [ ] **Step 5:** Run `npm run build && npm test`. Expected: PASS. Reopen a ui-kit page and confirm icons and fonts load with the network offline (DevTools offline or no internet).
 - [ ] **Step 6:** Commit `feat: bundle fonts and icons`.
 
-### Task 7: Shared lint config and v0.2.0
+### Task 7: Shared lint config and the next version (0.3.0; 0.2.0 went to the Tracker's package needs)
 
 **Files:**
 - Create: `lint/oxlintrc.json`, `test/lint.test.mjs`, `test/fixtures/lint/bad.jsx`, `test/fixtures/lint/good.jsx`
@@ -216,4 +216,4 @@ Spacing stays on Tailwind's default 4px scale (no override).
   - `bad.jsx` (contains `color: '#00FF03'`, `padding: '13px'`, `fontFamily: 'Inter'`, `<Button variant="danger">`, `<ToolRow foo="x">`, `'Great job 🎉'`, `import { Button } from '@risegame/design-system/dist/components/core/Button.js'`) yields one diagnostic per line, each message matching the rule above.
   - `good.jsx` (uses `var(--rg-accent)`, `<Button variant="primary">`, `<Icon name="check" />`) yields zero diagnostics.
 - [ ] **Step 3:** Run `npm test`. Expected: PASS if the copied rules work; fix any rule that misses its fixture line (the emoji regex is the likely one).
-- [ ] **Step 4:** README: lint section with the `extends` snippet. Bump version to `0.2.0`, CHANGELOG entry listing Tasks 3 to 7. Commit `feat: shared lint config`, tag `v0.2.0`, push `main` and the tag, confirm CI with `gh run watch`.
+- [ ] **Step 4:** README: lint section with the `extends` snippet. Bump version to `0.3.0` (0.2.0 is taken by the Tracker's package needs), CHANGELOG entry listing Tasks 3 to 7. Commit `feat: shared lint config`, tag `v0.3.0`, push `main` and the tag, confirm CI with `gh run watch`.

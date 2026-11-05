@@ -21,7 +21,8 @@ export function AppTabBar({
   }, rest), items.map(item => {
     const on = value === item.value;
     return /*#__PURE__*/React.createElement("button", _extends({
-      key: item.value
+      key: item.value,
+      "aria-label": item.lines ? item.label : undefined
     }, item.buttonProps, {
       type: "button",
       "aria-current": on ? 'page' : undefined,

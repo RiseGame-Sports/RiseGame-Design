@@ -73,7 +73,7 @@ The kit pages load `docs/ui-kits/ds-bundle.js`, which `npm run build` generates 
 
 ## Logos
 
-`Logo`, `SiteHeader` and `Testimonial` load the marks bundled in `assets/logos` through `new URL(..., import.meta.url)`, which Vite, webpack 5, Next.js and Parcel handle automatically. Import them from `@risegame/design-system/logo` (`Logo`) and `@risegame/design-system/marketing` (`SiteHeader`, `Testimonial`). The main entry leaves them out, so an app whose bundler does not resolve `new URL()` can still use every other component. To serve them from your own folder or a CDN, pass `assetBase="/brand/"`.
+`Logo`, `SiteHeader` and `Testimonial` load the marks bundled in `assets/logos` through `new URL(..., import.meta.url)`, which Vite, webpack 5, Next.js and Parcel handle automatically. Import them from `@risegame/design-system/logo` (`Logo`) and `@risegame/design-system/marketing` (`SiteHeader`, `Testimonial`). Importing the main entry no longer emits the eight logo PNGs; an app gets them only when it imports `@risegame/design-system/logo`. To serve them from your own folder or a CDN, pass `assetBase="/brand/"`.
 
 ## Fonts and icons
 
