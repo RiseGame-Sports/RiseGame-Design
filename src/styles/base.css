@@ -13,6 +13,7 @@ a{color:var(--text-link);text-decoration:none;font-weight:var(--weight-medium);t
 a:hover{color:var(--text-link-hover)}
 :focus-visible{outline:2px solid var(--rg-accent);outline-offset:2px}
 .rg-eyebrow{font-family:var(--font-body);font-weight:var(--weight-bold);font-size:var(--size-eyebrow);letter-spacing:var(--tracking-eyebrow);text-transform:uppercase}
+.rg-section-label{font-family:var(--font-body);font-weight:var(--weight-bold);font-size:var(--size-section-label);letter-spacing:var(--tracking-eyebrow);text-transform:uppercase}
 .rg-dark{background:var(--surface-dark);color:var(--text-inverse)}
 .rg-dark h1,.rg-dark h2,.rg-dark h3,.rg-dark h4{color:var(--text-inverse)}
 .rg-dark a{color:var(--text-inverse)}

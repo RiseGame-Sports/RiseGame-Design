@@ -15,6 +15,7 @@ export function ToolRow({
   href,
   onDark = false,
   divider = false,
+  alt = false,
   style,
   ...rest
 }) {
@@ -36,7 +37,7 @@ export function ToolRow({
       minHeight: 72,
       boxSizing: 'border-box',
       padding: 'var(--space-3) var(--space-4)',
-      background: rowLink && hover ? onDark ? 'var(--rg-dark-surface-3)' : 'var(--rg-paper)' : 'transparent',
+      background: rowLink && hover ? onDark ? alt ? 'var(--rg-dark-line)' : 'var(--rg-dark-surface-3)' : alt ? 'var(--rg-line)' : 'var(--rg-paper)' : alt ? onDark ? 'var(--surface-dark-row-alt)' : 'var(--surface-row-alt)' : 'transparent',
       border: 0,
       borderBottom: divider ? '1px solid ' + (onDark ? 'var(--border-dark)' : 'var(--border-default)') : 0,
       color: onDark ? 'var(--text-inverse)' : 'var(--text-body)',
@@ -56,7 +57,7 @@ export function ToolRow({
       alignItems: 'center',
       justifyContent: 'center',
       borderRadius: 'var(--radius-md)',
-      background: onDark ? 'var(--rg-dark-surface-3)' : 'var(--rg-paper)',
+      background: onDark ? alt ? 'var(--surface-dark-card)' : 'var(--rg-dark-surface-3)' : alt ? 'var(--surface-card)' : 'var(--rg-paper)',
       color: onDark ? 'var(--rg-white)' : 'var(--rg-ink)'
     }
   }, /*#__PURE__*/React.createElement(Icon, {
@@ -101,10 +102,12 @@ export function ToolRow({
   })) : null);
 }
 
-// One card of ToolRows with hairline dividers between them.
+// One card of ToolRows with hairline dividers between them. Every second row takes the row tint
+// (`surface-row-alt` on light, `surface-dark-row-alt` on dark); `striped={false}` turns that off.
 export function ToolList({
   children,
   onDark = false,
+  striped = true,
   style,
   ...rest
 }) {
@@ -117,11 +120,13 @@ export function ToolList({
       background: onDark ? 'var(--surface-dark-card)' : 'var(--surface-card)',
       border: '1px solid ' + (onDark ? 'var(--border-dark)' : 'var(--border-default)'),
       borderRadius: 'var(--radius-card)',
+      boxShadow: onDark ? 'none' : 'var(--shadow-card)',
       ...style
     }
   }, rest), rows.map((row, i) => /*#__PURE__*/React.isValidElement(row) ? /*#__PURE__*/React.cloneElement(row, {
     key: row.key ?? i,
     onDark: row.props.onDark ?? onDark,
-    divider: i < rows.length - 1
+    divider: i < rows.length - 1,
+    alt: striped && i % 2 === 1
   }) : row));
 }

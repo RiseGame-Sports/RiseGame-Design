@@ -1,4 +1,4 @@
-/* RiseGame design tokens. Source of truth: tokens/tokens.json */
+/* Generated from tokens/tokens.json. Do not edit. */
 :root, [data-theme="light"] {
   --rg-black: #000000;
   --rg-ink: #161616;
@@ -6,6 +6,7 @@
   --rg-white: #ffffff;
   --rg-paper: #f2f2f2;
   --rg-line: #e2e2e2;
+  --rg-card-line: #d6d6d6;
   --rg-mute: #666666;
   --rg-accent: #1dfe1b;
   --rg-trail: #78f951;
@@ -22,14 +23,16 @@
   --text-link: var(--rg-ink);
   --text-link-hover: var(--rg-accent);
   --text-on-accent: var(--rg-black);
-  --surface-page: var(--rg-white);
+  --surface-page: var(--rg-paper);
   --surface-chrome: var(--rg-paper);
   --surface-card: var(--rg-white);
   --surface-card-alt: var(--rg-paper);
+  --surface-row-alt: var(--rg-paper);
   --surface-dark: var(--rg-black);
   --surface-dark-card: var(--rg-dark-surface-2);
+  --surface-dark-row-alt: var(--rg-dark-surface-3);
   --surface-accent: var(--rg-accent);
-  --border-default: var(--rg-line);
+  --border-default: var(--rg-card-line);
   --border-strong: var(--rg-ink);
   --border-dark: var(--rg-dark-line);
   --focus-ring: var(--rg-accent);
@@ -60,6 +63,9 @@
   --space-8: 64px;
   --space-9: 96px;
   --space-10: 128px;
+  --section-gap: var(--space-6);
+  --section-label-gap: 10px;
+  --card-pad: var(--space-4);
   --gutter: 24px;
   --section-y: 96px;
   --section-y-tight: 48px;
@@ -91,6 +97,7 @@
   --size-body-sm: 14px;
   --size-caption: 12px;
   --size-eyebrow: 12px;
+  --size-section-label: 13px;
   --leading-display: 1.02;
   --leading-heading: 1.08;
   --leading-body: 1.55;
@@ -119,3 +126,4 @@
 .body-sm { font-family: var(--font-body); font-size: 14px; line-height: 1.55; font-weight: 400; }
 .caption { font-family: var(--font-body); font-size: 12px; line-height: 1.35; font-weight: 400; }
 .eyebrow { font-family: var(--font-body); font-size: 12px; line-height: 1.35; font-weight: 700; letter-spacing: 0.1em; }
+.section-label { font-family: var(--font-body); font-size: 13px; line-height: 1.35; font-weight: 700; letter-spacing: 0.1em; }

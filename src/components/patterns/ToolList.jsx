@@ -4,7 +4,7 @@ import { Button } from '../core/Button.jsx';
 
 // One row: icon tile, title, muted meta line, then either a labeled secondary
 // button (actionLabel) or, with no button, the whole row as the tap target.
-export function ToolRow({ icon, title, meta, actionLabel, onAction, onClick, href, onDark = false, divider = false, style, ...rest }) {
+export function ToolRow({ icon, title, meta, actionLabel, onAction, onClick, href, onDark = false, divider = false, alt = false, style, ...rest }) {
   const [hover, setHover] = React.useState(false);
   const rowLink = !actionLabel && (onClick || href);
   const Tag = rowLink ? (href ? 'a' : 'button') : 'div';
@@ -19,7 +19,7 @@ export function ToolRow({ icon, title, meta, actionLabel, onAction, onClick, hre
       style={{
         display: 'flex', alignItems: 'center', gap: 'var(--space-3)', width: '100%',
         minHeight: 72, boxSizing: 'border-box', padding: 'var(--space-3) var(--space-4)',
-        background: rowLink && hover ? (onDark ? 'var(--rg-dark-surface-3)' : 'var(--rg-paper)') : 'transparent',
+        background: rowLink && hover ? (onDark ? (alt ? 'var(--rg-dark-line)' : 'var(--rg-dark-surface-3)') : (alt ? 'var(--rg-line)' : 'var(--rg-paper)')) : alt ? (onDark ? 'var(--surface-dark-row-alt)' : 'var(--surface-row-alt)') : 'transparent',
         border: 0, borderBottom: divider ? '1px solid ' + (onDark ? 'var(--border-dark)' : 'var(--border-default)') : 0,
         color: onDark ? 'var(--text-inverse)' : 'var(--text-body)',
         textDecoration: 'none', textAlign: 'left', font: 'inherit',
@@ -32,7 +32,7 @@ export function ToolRow({ icon, title, meta, actionLabel, onAction, onClick, hre
       {icon ? (
         <span style={{
           width: 40, height: 40, flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center',
-          borderRadius: 'var(--radius-md)', background: onDark ? 'var(--rg-dark-surface-3)' : 'var(--rg-paper)',
+          borderRadius: 'var(--radius-md)', background: onDark ? (alt ? 'var(--surface-dark-card)' : 'var(--rg-dark-surface-3)') : (alt ? 'var(--surface-card)' : 'var(--rg-paper)'),
           color: onDark ? 'var(--rg-white)' : 'var(--rg-ink)',
         }}>
           <Icon name={icon} size={22} />
@@ -51,8 +51,9 @@ export function ToolRow({ icon, title, meta, actionLabel, onAction, onClick, hre
   );
 }
 
-// One card of ToolRows with hairline dividers between them.
-export function ToolList({ children, onDark = false, style, ...rest }) {
+// One card of ToolRows with hairline dividers between them. Every second row takes the row tint
+// (`surface-row-alt` on light, `surface-dark-row-alt` on dark); `striped={false}` turns that off.
+export function ToolList({ children, onDark = false, striped = true, style, ...rest }) {
   const rows = React.Children.toArray(children).filter(Boolean);
   return (
     <div
@@ -61,12 +62,13 @@ export function ToolList({ children, onDark = false, style, ...rest }) {
         background: onDark ? 'var(--surface-dark-card)' : 'var(--surface-card)',
         border: '1px solid ' + (onDark ? 'var(--border-dark)' : 'var(--border-default)'),
         borderRadius: 'var(--radius-card)',
+        boxShadow: onDark ? 'none' : 'var(--shadow-card)',
         ...style,
       }}
       {...rest}
     >
       {rows.map((row, i) => (React.isValidElement(row)
-        ? React.cloneElement(row, { key: row.key ?? i, onDark: row.props.onDark ?? onDark, divider: i < rows.length - 1 })
+        ? React.cloneElement(row, { key: row.key ?? i, onDark: row.props.onDark ?? onDark, divider: i < rows.length - 1, alt: striped && i % 2 === 1 })
         : row))}
     </div>
   );

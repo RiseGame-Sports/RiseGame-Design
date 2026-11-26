@@ -90,7 +90,7 @@ the mess and offer the fix, in the product's own voice.
 accent doing all the work.
 
 **Color.** Black `#000000` field, ink `#161616` headlines on light, white `#FFFFFF` marks and
-surfaces, paper `#F2F2F2` chrome, mute `#666666` secondary text, and exactly one accent:
+surfaces, paper `#F2F2F2` as the light page ground and chrome, mute `#666666` secondary text, and exactly one accent:
 `#1DFE1B`. The logo trail `#78F951` lives **inside the mark files only**; it is never a second
 button color. Retired / forbidden greens: HubSpot `#00FF03`, social `#7ED957`, site leftover
 `#3EC96B`. Dark chrome adds `#0B0B0B` / `#161616` / `#242424` surfaces, `#2E2E2E` lines and
@@ -103,7 +103,7 @@ and tags at 12px uppercase with 0.1em tracking. Two families, never a third. Fal
 then system sans.
 
 **Spacing and layout.** 4px base scale (4 → 128). Content max 1200px, prose max 720px. Marketing
-sections run 96px vertical (48px tight); product UI works on 16 / 24px gutters. Controls are 32 /
+sections run 96px vertical (48px tight); product UI works on 16 / 24px gutters, with 32px between sections and 16px inside cards. Controls are 32 /
 40 / 48px tall; app rows and tab bars never go below the 44px tap minimum. Layout is a plain
 top-to-bottom stack of full-width bands (dark band, light band, dark band) with the header fixed
 in the marketing chrome and app tab bars pinned to the bottom. No sticky sidebars, no floating
@@ -114,8 +114,8 @@ action buttons.
 dots, avatars and score chips. 15px exists only in legacy HubSpot email templates. Nothing is
 pill-heavy unless asked.
 
-**Cards.** White (or `#161616` on dark), 1px hairline border `#E2E2E2` (`#2E2E2E` on dark), 8px
-radius, and a whisper of shadow: `0 1px 2px rgba(0,0,0,.06)`. Flat, not floating. Interactive
+**Cards.** White on the paper `#F2F2F2` page (or `#161616` on the `#000` dark page), 1px hairline border `#D6D6D6` (`#2E2E2E` on dark), 8px
+radius, and a whisper of shadow at full strength: `0 1px 2px rgba(0,0,0,.06), 0 1px 1px rgba(0,0,0,.04)` (none on dark). Flat, not floating. Interactive
 cards raise to `0 2px 8px rgba(0,0,0,.10)` and swap the border to ink (accent on dark). **No
 colored left-border accents. No gradient fills. No skeuomorphism.**
 
@@ -140,7 +140,7 @@ overshoots; the rocket rises, it does not wobble.
 
 **Hover states.** The primary button inverts: neon fill → `#242424` fill with a white label.
 Outline buttons fill with ink (white on dark). Ghost buttons go accent. Nav links go accent and
-gain a 2px accent underline. Rows tint to `#F2F2F2` (`#161616` on dark). Cards raise and darken
+gain a 2px accent underline. Rows tint to `#F2F2F2` on hover (`#242424` on dark). Cards raise and darken
 their border. Never opacity-fade a control on hover.
 
 **Press states.** 1px downward nudge (`translateY(1px)`), no shrink, no color change beyond the
@@ -177,9 +177,9 @@ Every product screen has one job. The layout, the type and the green all point a
 
 **Lists of tools and items.** Use `ToolList` with `ToolRow` children: one dark card holding rows, not a grid of separate boxes. Each row has a 40px `rg-dark-surface-3` tile with a white 22px outline icon, a title and a muted meta line, then a labeled `secondary` small button on the right. Don't use icon-only buttons for actions that lack a universal glyph. If a row has no button, the whole row is the tap target and ends in a muted `chevron-right`.
 
-**Sections.** Use `SectionCard`: a muted eyebrow above a plain dark card. No dashed boxes, no green fieldset borders and no labels set into the border line.
+**Sections (style A).** Use `SectionCard`: an uppercase section header above one white card on the paper page (a dark card on dark). The header is ink `#161616` on light and white on dark, never mute, never accent, set in `section-label` (13px, one step above the 12px eyebrow). Sections are 32px apart (`section-gap`); the header sits 10px above its card (`section-label-gap`), so there is always more space above a header than below it. Inside a card, content has 16px padding (`card-pad`). In a list card, every second row takes the row tint: `surface-row-alt` paper on light, `surface-dark-row-alt` `#242424` on dark. No dashed boxes, no green fieldset borders and no labels set into the border line.
 
-**Tab bars and nav.** Icons and labels are `rg-white` when active and `rg-dark-mute` when not, and the active item gets a 2px accent bar. Color stays off the icon and label. `AppTabBar` follows this rule.
+**Tab bars and nav.** On light, the bar is white (`surface-card`) with a 1px `border-default` (#D6D6D6) top border, so it separates from the paper page; icons and labels are `rg-ink` when active and `rg-mute` when not. On dark, the bar is dark chrome; they are `rg-white` when active and `rg-dark-mute` when not. The active item gets a 2px accent bar in both. Count badges on a tab are neutral, never accent. Color stays off the icon and label. `AppTabBar` follows this rule.
 
 The Tracker home redesign (Nov 2026) is the worked example of these rules, in phone and tablet, with and without a game in progress. Where the pre-redesign Tracker screenshots in `docs/sources/` disagree with this section (green labels in fieldset borders, a green active tab label), this section wins.
 
@@ -237,7 +237,7 @@ Where they disagree with this book, this book wins. Their green eyebrows set int
 **Root**
 - `README.md`: install, imports and the component list.
 - `tokens/tokens.json`: every color, type style, spacing step, size, radius, shadow, weight, duration and easing. `src/styles/tokens.css` carries the same values as CSS custom properties.
-- `src/styles/base.css`: font import, element resets, `.rg-eyebrow` / `.rg-dark` helpers, and the two composite values (`--transition-control`, `--scrim-bottom`). `@risegame/design-system/styles.css` loads tokens and base together.
+- `src/styles/base.css`: font import, element resets, `.rg-eyebrow` / `.rg-section-label` / `.rg-dark` helpers, and the two composite values (`--transition-control`, `--scrim-bottom`). `@risegame/design-system/styles.css` loads tokens and base together.
 - `src/components/<group>/`: component sources; `src/index.d.ts` for props; `docs/components/<Name>.md` for usage rules.
 - `docs/ui-kits/ds-bundle.js`: all 31 components on `window.RiseGameDesignSystem_66bdc7` for the UI kit pages, built by `npm run build` (not committed). `Logo`, `SiteHeader` and `Testimonial` resolve the marks from `assets/logos/` on their own.
 - `docs/guidelines/`: one HTML card per foundation (color, type, spacing, radius, elevation, motion, brand marks).

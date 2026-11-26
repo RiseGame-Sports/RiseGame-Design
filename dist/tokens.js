@@ -33,12 +33,17 @@ export const tokens = {
    {
     "name": "rg-paper",
     "value": "#f2f2f2",
-    "usage": "Light chrome: header bands, alt cards, row hover on light."
+    "usage": "Light page ground, header bands and app chrome, alternate list rows inside cards, row hover on light."
    },
    {
     "name": "rg-line",
     "value": "#e2e2e2",
     "usage": "Hairline card and divider border on light surfaces. Decorative only, not a control border."
+   },
+   {
+    "name": "rg-card-line",
+    "value": "#d6d6d6",
+    "usage": "Card hairline on the paper page. Decorative only, not a control border."
    },
    {
     "name": "rg-mute",
@@ -122,23 +127,28 @@ export const tokens = {
    },
    {
     "name": "surface-page",
-    "value": "{rg-white}",
-    "usage": "Light page ground."
+    "value": "{rg-paper}",
+    "usage": "Light page ground: paper. Cards sit on it in white."
    },
    {
     "name": "surface-chrome",
     "value": "{rg-paper}",
-    "usage": "Light header bands and app chrome."
+    "usage": "Light header bands and app chrome (paper). The light tab bar is the exception: white `surface-card`, so it separates from the page."
    },
    {
     "name": "surface-card",
     "value": "{rg-white}",
-    "usage": "Cards on light pages."
+    "usage": "Cards on the paper page."
    },
    {
     "name": "surface-card-alt",
     "value": "{rg-paper}",
     "usage": "Alternate card fill on light pages."
+   },
+   {
+    "name": "surface-row-alt",
+    "value": "{rg-paper}",
+    "usage": "Every second row inside a light card. The first row stays on the card fill."
    },
    {
     "name": "surface-dark",
@@ -151,14 +161,19 @@ export const tokens = {
     "usage": "Cards on dark chrome."
    },
    {
+    "name": "surface-dark-row-alt",
+    "value": "{rg-dark-surface-3}",
+    "usage": "Every second row inside a dark card (#242424 on the #161616 card)."
+   },
+   {
     "name": "surface-accent",
     "value": "{rg-accent}",
     "usage": "The one primary action per view; selected score chip."
    },
    {
     "name": "border-default",
-    "value": "{rg-line}",
-    "usage": "Card and divider hairline on light."
+    "value": "{rg-card-line}",
+    "usage": "Card and divider hairline on light (#D6D6D6, visible on the paper page)."
    },
    {
     "name": "border-strong",
@@ -331,6 +346,15 @@ export const tokens = {
       "letterSpacing": "0.1em",
       "sample": "GAME DAY",
       "usage": "Nav, eyebrows, badges, tags. Always uppercase (use `.rg-eyebrow`)."
+     },
+     {
+      "name": "section-label",
+      "fontSize": "13px",
+      "lineHeight": 1.35,
+      "fontWeight": 700,
+      "letterSpacing": "0.1em",
+      "sample": "RECENT GAMES",
+      "usage": "Section header above a product card. Uppercase, ink on light and white on dark (use `.rg-section-label`)."
      }
     ]
    }
@@ -356,7 +380,7 @@ export const tokens = {
    {
     "name": "space-4",
     "value": "16px",
-    "usage": "Card padding, product UI gutter on phones."
+    "usage": "Card padding on product screens (`card-pad`), product UI gutter on phones."
    },
    {
     "name": "space-5",
@@ -366,7 +390,7 @@ export const tokens = {
    {
     "name": "space-6",
     "value": "32px",
-    "usage": "Gap between groups inside a section."
+    "usage": "Gap between sections on a product screen (`section-gap`); gap between groups inside a marketing section."
    },
    {
     "name": "space-7",
@@ -387,6 +411,21 @@ export const tokens = {
     "name": "space-10",
     "value": "128px",
     "usage": "Hero padding."
+   },
+   {
+    "name": "section-gap",
+    "value": "{space-6}",
+    "usage": "Space above each section on a product screen: 32px. Always larger than `section-label-gap`."
+   },
+   {
+    "name": "section-label-gap",
+    "value": "10px",
+    "usage": "Space between a section header and its card."
+   },
+   {
+    "name": "card-pad",
+    "value": "{space-4}",
+    "usage": "Padding inside a product card and between its content: 16px."
    },
    {
     "name": "gutter",
@@ -488,7 +527,7 @@ export const tokens = {
    {
     "name": "shadow-card",
     "value": "0 1px 2px rgba(0,0,0,.06), 0 1px 1px rgba(0,0,0,.04)",
-    "usage": "Resting card."
+    "usage": "Resting card. Full strength on the paper page."
    },
    {
     "name": "shadow-raised",
@@ -597,6 +636,11 @@ export const tokens = {
     "name": "size-eyebrow",
     "value": "12px",
     "usage": "Eyebrows, nav, badges."
+   },
+   {
+    "name": "size-section-label",
+    "value": "13px",
+    "usage": "Section headers above cards: one step above the eyebrow."
    }
   ]
  },
@@ -684,6 +728,7 @@ export const cssVars = {
  "--rg-white": "#ffffff",
  "--rg-paper": "#f2f2f2",
  "--rg-line": "#e2e2e2",
+ "--rg-card-line": "#d6d6d6",
  "--rg-mute": "#666666",
  "--rg-accent": "#1dfe1b",
  "--rg-trail": "#78f951",
@@ -700,14 +745,16 @@ export const cssVars = {
  "--text-link": "var(--rg-ink)",
  "--text-link-hover": "var(--rg-accent)",
  "--text-on-accent": "var(--rg-black)",
- "--surface-page": "var(--rg-white)",
+ "--surface-page": "var(--rg-paper)",
  "--surface-chrome": "var(--rg-paper)",
  "--surface-card": "var(--rg-white)",
  "--surface-card-alt": "var(--rg-paper)",
+ "--surface-row-alt": "var(--rg-paper)",
  "--surface-dark": "var(--rg-black)",
  "--surface-dark-card": "var(--rg-dark-surface-2)",
+ "--surface-dark-row-alt": "var(--rg-dark-surface-3)",
  "--surface-accent": "var(--rg-accent)",
- "--border-default": "var(--rg-line)",
+ "--border-default": "var(--rg-card-line)",
  "--border-strong": "var(--rg-ink)",
  "--border-dark": "var(--rg-dark-line)",
  "--focus-ring": "var(--rg-accent)",
@@ -729,6 +776,9 @@ export const cssVars = {
  "--space-8": "64px",
  "--space-9": "96px",
  "--space-10": "128px",
+ "--section-gap": "var(--space-6)",
+ "--section-label-gap": "10px",
+ "--card-pad": "var(--space-4)",
  "--gutter": "24px",
  "--section-y": "96px",
  "--section-y-tight": "48px",
@@ -767,6 +817,7 @@ export const cssVars = {
  "--size-body-sm": "14px",
  "--size-caption": "12px",
  "--size-eyebrow": "12px",
+ "--size-section-label": "13px",
  "--leading-display": "1.02",
  "--leading-heading": "1.08",
  "--leading-body": "1.55",

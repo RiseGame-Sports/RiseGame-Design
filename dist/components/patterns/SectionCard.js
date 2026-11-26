@@ -1,7 +1,8 @@
 function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
 import React from 'react';
 
-// A labeled section: a muted uppercase eyebrow above one plain card.
+// A labeled section: an uppercase section header (ink on light, white on dark) above one white card.
+// Stack sections in a column with `gap: var(--section-gap)`; the header sits `--section-label-gap` above its card.
 // No dashed boxes, no accent borders, no label set into the border line.
 export function SectionCard({
   label,
@@ -16,13 +17,13 @@ export function SectionCard({
     style: {
       display: 'flex',
       flexDirection: 'column',
-      gap: 'var(--space-2)',
+      gap: 'var(--section-label-gap)',
       ...style
     }
   }, rest), label ? /*#__PURE__*/React.createElement("span", {
-    className: "rg-eyebrow",
+    className: "rg-section-label",
     style: {
-      color: onDark ? 'var(--text-inverse-muted)' : 'var(--text-muted)'
+      color: onDark ? 'var(--text-inverse)' : 'var(--text-heading)'
     }
   }, label) : null, /*#__PURE__*/React.createElement("div", {
     style: {
@@ -33,6 +34,7 @@ export function SectionCard({
       border: '1px solid ' + (onDark ? 'var(--border-dark)' : 'var(--border-default)'),
       borderRadius: 'var(--radius-card)',
       padding,
+      boxShadow: onDark ? 'none' : 'var(--shadow-card)',
       color: onDark ? 'var(--text-inverse)' : 'var(--text-body)',
       ...cardStyle
     }

@@ -10,6 +10,8 @@ const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const dist = (p) => pathToFileURL(path.join(root, 'dist', p)).href;
 
 const { AppTabBar } = await import(dist('components/navigation/AppTabBar.js'));
+const { SectionCard } = await import(dist('components/patterns/SectionCard.js'));
+const { ToolList, ToolRow } = await import(dist('components/patterns/ToolList.js'));
 
 test('AppTabBar renders lines as two lines', () => {
   const html = renderToStaticMarkup(
@@ -23,6 +25,17 @@ test('AppTabBar spreads buttonProps', () => {
     createElement(AppTabBar, { items: [{ value: 'home', label: 'Home', icon: 'house', buttonProps: { 'data-nav': 'home' } }] })
   );
   assert.match(html, /<button[^>]*data-nav="home"/);
+});
+
+test('AppTabBar is light by default and dark with onDark', () => {
+  const items = [{ value: 'h', label: 'Home', icon: 'house' }];
+  const light = renderToStaticMarkup(createElement(AppTabBar, { items, value: 'h' }));
+  assert.match(light, /background:var\(--surface-card\)/);
+  assert.match(light, /border-top:1px solid var\(--border-default\)/);
+  assert.match(light, /color:var\(--rg-ink\)/);
+  const dark = renderToStaticMarkup(createElement(AppTabBar, { items, value: 'h', onDark: true }));
+  assert.match(dark, /background:var\(--rg-black\)/);
+  assert.match(dark, /color:var\(--rg-white\)/);
 });
 
 test('compact AppTabBar lays tabs out in a row', () => {
@@ -117,4 +130,22 @@ test('Button and IconButton show hover colors only where hover exists', async ()
     if (saved) globalThis.matchMedia = saved;
     else delete globalThis.matchMedia;
   }
+});
+
+test('SectionCard header is ink on light, white on dark, in section-label', () => {
+  const light = renderToStaticMarkup(createElement(SectionCard, { label: 'Tools' }, 'x'));
+  assert.match(light, /class="rg-section-label" style="color:var\(--text-heading\)"/);
+  assert.match(light, /gap:var\(--section-label-gap\)/);
+  assert.match(light, /box-shadow:var\(--shadow-card\)/);
+  const dark = renderToStaticMarkup(createElement(SectionCard, { label: 'Tools', onDark: true }, 'x'));
+  assert.match(dark, /class="rg-section-label" style="color:var\(--text-inverse\)"/);
+  assert.match(dark, /box-shadow:none/);
+});
+
+test('ToolList tints every second row', () => {
+  const rows = [1, 2, 3].map((n) => createElement(ToolRow, { key: n, title: 'Row ' + n }));
+  const light = renderToStaticMarkup(createElement(ToolList, null, ...rows));
+  assert.equal(light.split('background:var(--surface-row-alt)').length - 1, 1);
+  const dark = renderToStaticMarkup(createElement(ToolList, { onDark: true }, ...rows));
+  assert.equal(dark.split('background:var(--surface-dark-row-alt)').length - 1, 1);
 });

@@ -6,6 +6,7 @@ export function AppTabBar({
   value,
   onChange,
   compact = false,
+  onDark = false,
   style,
   ...rest
 }) {
@@ -13,8 +14,8 @@ export function AppTabBar({
     style: {
       display: 'grid',
       gridTemplateColumns: 'repeat(' + Math.max(items.length, 1) + ',1fr)',
-      background: 'var(--rg-black)',
-      borderTop: '1px solid var(--border-dark)',
+      background: onDark ? 'var(--rg-black)' : 'var(--surface-card)',
+      borderTop: '1px solid ' + (onDark ? 'var(--border-dark)' : 'var(--border-default)'),
       paddingBottom: 'var(--space-2)',
       ...style
     }
@@ -39,7 +40,7 @@ export function AppTabBar({
         background: 'none',
         border: 0,
         cursor: 'pointer',
-        color: on ? 'var(--rg-white)' : 'var(--rg-dark-mute)',
+        color: on ? onDark ? 'var(--rg-white)' : 'var(--rg-ink)' : onDark ? 'var(--rg-dark-mute)' : 'var(--rg-mute)',
         transition: 'var(--transition-control)'
       }
     }), /*#__PURE__*/React.createElement("span", {
